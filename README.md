@@ -1,6 +1,6 @@
 # @musecat/functionkit
 
-React 19 기반 프론트엔드 유틸리티 라이브러리입니다.
+A React 19 + TypeScript UI F.E. utility library.
 
 ## Installation
 
@@ -10,16 +10,29 @@ npm install @musecat/functionkit
 
 ## Usage
 
-모든 훅, 컴포넌트, 유틸리티는 배럴 파일을 통해 직접 임포트하여 사용할 수 있습니다.
-
 ```tsx
 import { useDebounce, formatClientDateTime } from "@musecat/functionkit";
+
+export default function Example() {
+  const handleSearch = useDebounce((term: string) => fetchResults(term), 300);
+  const now = formatClientDateTime(new Date(), {
+    datePreset: "long",
+    timePreset: "24h-minute",
+  });
+
+  return (
+    <View column gap={24}>
+      <Input onChange={(e) => handleSearch(e.target.value)} />
+      <Text type="Caption1">{now}</Text>
+    </View>
+  );
+}
 ```
 
 ## Acknowledgements
 
-이 프로젝트의 많은 유틸리티 및 훅 코드는 [toss/react-simplikit](https://github.com/toss/react-simplikit/) 프로젝트를 참조 및 영감을 받아 작성되었습니다.
+- [toss/react-simplikit](https://github.com/toss/react-simplikit/)
 
 ## License
 
-MIT License © Musecat Team. 여기에서 [라이센스](./LICENSE) 정보 확인하기
+[MIT License](./LICENSE) © Musecat Team.

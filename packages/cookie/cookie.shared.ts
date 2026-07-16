@@ -3,140 +3,136 @@
 const EXPIRED_COOKIE_DATE = "Thu, 01 Jan 1970 00:00:00 GMT";
 
 type CookieStoreLike = {
-  delete: (name: string) => Promise<void>;
+	delete: (name: string) => Promise<void>;
 };
 
 type DocumentCookieRef = {
-  cookie: string;
+	cookie: string;
 };
 
 type ClearClientCookieOptions = {
-  hostname?: string;
-  path?: string;
-  documentRef?: DocumentCookieRef;
-  cookieStore?: CookieStoreLike;
+	hostname?: string;
+	path?: string;
+	documentRef?: DocumentCookieRef;
+	cookieStore?: CookieStoreLike;
 };
 
 type ClearAllClientCookiesOptions = ClearClientCookieOptions & {
-  /**
-   * If true, cookies in the hostname's root path ("/") are also deleted.
-   * Use with caution.
-   */
-  includeRoot?: boolean;
-  cookieString?: string;
+	includeRoot?: boolean;
+	cookieString?: string;
 };
 
 function findClientCookie(
-  name: string,
-  documentRef: DocumentCookieRef,
+	name: string,
+	documentRef: DocumentCookieRef,
 ): string | undefined {
-  const parsed = parseClientCookie(documentRef.cookie);
-  return parsed[name];
+	const parsed = parseClientCookie(documentRef.cookie);
+	return parsed[name];
 }
 
 function parseClientCookie(cookieString: string): Record<string, string> {
-  return cookieString
-    .split(";")
-    .map((pair) => pair.trim().split("=") as [string, string])
-    .reduce<Record<string, string>>((acc, [key, value]) => {
-      if (key) {
-        acc[key] = value;
-      }
-      return acc;
-    }, {});
+	return cookieString
+		.split(";")
+		.map((pair) => pair.trim().split("=") as [string, string])
+		.reduce<Record<string, string>>((acc, [key, value]) => {
+			if (key) {
+				acc[key] = value;
+			}
+			return acc;
+		}, {});
 }
 
 export function parseClientCookieNames(cookieString: string): string[] {
-  return cookieString
-    .split(";")
-    .map((entry) => {
-      const eqPos = entry.indexOf("=");
-      return eqPos > -1 ? entry.slice(0, eqPos).trim() : entry.trim();
-    })
-    .filter(Boolean);
+	return cookieString
+		.split(";")
+		.map((entry) => {
+			const eqPos = entry.indexOf("=");
+			return eqPos > -1 ? entry.slice(0, eqPos).trim() : entry.trim();
+		})
+		.filter(Boolean);
 }
 
 export function getClientCookie(name: string): string | undefined {
-  if (typeof document === "undefined") {
-    return undefined;
-  }
+	if (typeof document === "undefined") {
+		return undefined;
+	}
 
-  return findClientCookie(name, document);
+	return findClientCookie(name, document);
 }
 
 export function setClientCookie(name: string, value: string, days?: number) {
-  if (typeof document === "undefined") {
-    return;
-  }
+	if (typeof document === "undefined") {
+		return;
+	}
 
-  let expires = "";
-  if (days) {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = `; expires=${date.toUTCString()}`;
-  }
+	let expires = "";
+	if (days) {
+		const date = new Date();
+		date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+		expires = `; expires=${date.toUTCString()}`;
+	}
 
-  document.cookie = `${name}=${encodeURIComponent(value)}${expires}; path=/`;
+	document.cookie = `${name}=${encodeURIComponent(value)}${expires}; path=/`;
 }
 
 export function clearClientCookie(
-  name: string,
-  options: ClearClientCookieOptions = {},
+	name: string,
+	options: ClearClientCookieOptions = {},
 ): void {
-  const {
-    hostname = window.location.hostname,
-    path = "/",
-    documentRef = document,
-  } = options;
+	const {
+		hostname = window.location.hostname,
+		path = "/",
+		documentRef = document,
+	} = options;
 
-  documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path}; domain=${hostname};`;
+	documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path}; domain=${hostname};`;
 }
 
 export function clearAllClientCookies(
-  options: ClearAllClientCookiesOptions = {},
+	options: ClearAllClientCookiesOptions = {},
 ): string[] {
-  const {
-    documentRef = document,
-    cookieStore,
-    includeRoot = false,
-    cookieString,
-  } = options;
+	const {
+		documentRef = document,
+		cookieStore,
+		includeRoot = false,
+		cookieString,
+	} = options;
 
-  const entries = cookieString
-    ? parseClientCookieNames(cookieString)
-    : documentRef.cookie
-        .split(/;\s*/)
-        .map((entry) => {
-          const eqPos = entry.indexOf("=");
-          return eqPos > -1 ? entry.slice(0, eqPos).trim() : entry.trim();
-        })
-        .filter(Boolean);
+	const entries = cookieString
+		? parseClientCookieNames(cookieString)
+		: documentRef.cookie
+				.split(/;\s*/)
+				.map((entry) => {
+					const eqPos = entry.indexOf("=");
+					return eqPos > -1 ? entry.slice(0, eqPos).trim() : entry.trim();
+				})
+				.filter(Boolean);
 
-  if (cookieStore) {
-    for (const name of entries) {
-      cookieStore.delete(name);
-    }
-    return entries;
-  }
+	if (cookieStore) {
+		for (const name of entries) {
+			cookieStore.delete(name);
+		}
+		return entries;
+	}
 
-  const hostnameParts = window.location.hostname.split(".");
-  const { pathname } = window.location;
+	const hostnameParts = window.location.hostname.split(".");
+	const { pathname } = window.location;
 
-  const paths = [pathname];
-  if (includeRoot) {
-    paths.unshift("/");
-  }
+	const paths = [pathname];
+	if (includeRoot) {
+		paths.unshift("/");
+	}
 
-  for (const name of entries) {
-    if (!name) continue;
+	for (const name of entries) {
+		if (!name) continue;
 
-    for (const path of paths) {
-      for (let i = 0; i < hostnameParts.length; i++) {
-        const domain = hostnameParts.slice(i).join(".");
-        documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path}; domain=${domain};`;
-      }
-    }
-  }
+		for (const path of paths) {
+			for (let i = 0; i < hostnameParts.length; i++) {
+				const domain = hostnameParts.slice(i).join(".");
+				documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path}; domain=${domain};`;
+			}
+		}
+	}
 
-  return entries;
+	return entries;
 }

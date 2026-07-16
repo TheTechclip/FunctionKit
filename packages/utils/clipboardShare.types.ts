@@ -1,18 +1,18 @@
 export type NavigatorClipboardProps = {
-  text: string;
+	text: string;
 };
 
 export type NavigatorShareProps = {
-  title: string;
-  text: string;
-  link: string;
+	title: string;
+	text: string;
+	link: string;
 };
 
 export type NavigatorClipboardResult = {
-  success: boolean;
+	success: boolean;
 };
 
 export type NavigatorShareResult = {
-  success: boolean;
-  method: "share" | "clipboard" | "unsupported";
+	success: boolean;
+	method: "share" | "clipboard" | "unsupported";
 };

@@ -5,52 +5,52 @@ import { useCallback, useEffect, useRef } from "react";
 import { usePreservedCallback } from "./usePreservedCallback";
 
 type UseTimeoutOptions = {
-  enabled?: boolean;
+	enabled?: boolean;
 };
 
 export type UseTimeoutControls = {
-  start: (overrideDelay?: number) => void;
-  reset: (overrideDelay?: number) => void;
-  clear: () => void;
-  isPending: () => boolean;
+	start: (overrideDelay?: number) => void;
+	reset: (overrideDelay?: number) => void;
+	clear: () => void;
+	isPending: () => boolean;
 };
 
 export function useTimeout(
-  callback: () => void,
-  delay = 0,
-  options?: UseTimeoutOptions,
+	callback: () => void,
+	delay = 0,
+	options?: UseTimeoutOptions,
 ): UseTimeoutControls {
-  const { enabled = true } = options ?? {};
-  const preservedCallback = usePreservedCallback(callback);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const { enabled = true } = options ?? {};
+	const preservedCallback = usePreservedCallback(callback);
+	const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const clear = useCallback(() => {
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  }, []);
+	const clear = useCallback(() => {
+		if (timeoutRef.current !== null) {
+			clearTimeout(timeoutRef.current);
+			timeoutRef.current = null;
+		}
+	}, []);
 
-  const start = useCallback(
-    (overrideDelay?: number) => {
-      clear();
-      timeoutRef.current = setTimeout(() => {
-        timeoutRef.current = null;
-        preservedCallback();
-      }, overrideDelay ?? delay);
-    },
-    [clear, delay, preservedCallback],
-  );
+	const start = useCallback(
+		(overrideDelay?: number) => {
+			clear();
+			timeoutRef.current = setTimeout(() => {
+				timeoutRef.current = null;
+				preservedCallback();
+			}, overrideDelay ?? delay);
+		},
+		[clear, delay, preservedCallback],
+	);
 
-  const isPending = useCallback(() => timeoutRef.current !== null, []);
+	const isPending = useCallback(() => timeoutRef.current !== null, []);
 
-  useEffect(() => {
-    if (!enabled) return;
-    start();
-    return clear;
-  }, [enabled, start, clear]);
+	useEffect(() => {
+		if (!enabled) return;
+		start();
+		return clear;
+	}, [enabled, start, clear]);
 
-  useEffect(() => clear, [clear]);
+	useEffect(() => clear, [clear]);
 
-  return { start, reset: start, clear, isPending };
+	return { start, reset: start, clear, isPending };
 }

@@ -1,15 +1,29 @@
 {
-  "name": "@musecat/functionkit",
-  "version": "1.0.0",
-  "type": "module",
-  "main": "./index.ts",
-  "types": "./index.ts",
-  "exports": {
-    ".": "./index.ts",
-    "./*": "./*"
-  },
-  "peerDependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  }
+	"name": "@musecat/functionkit",
+	"version": "1.0.1",
+	"type": "module",
+	"main": "./index.ts",
+	"types": "./index.ts",
+	"exports": {
+		".": "./index.ts",
+		"./*": "./*"
+	},
+	"scripts": {
+		"lint": "biome check",
+		"format": "prettier --write . && biome format --write",
+		"test": "vitest run"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.4",
+		"@testing-library/jest-dom": "^6.6.3",
+		"@testing-library/react": "^16.2.0",
+		"@testing-library/user-event": "^14.6.1",
+		"jsdom": "^26.0.0",
+		"prettier": "^3.9.5",
+		"vitest": "^4.1.10"
+	}
 }
