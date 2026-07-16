@@ -2,7 +2,7 @@
 export {
   getViewportPortalRoot,
   ViewportPortal
-} from "./components/ViewportPortal";
+} from "./packages/components/ViewportPortal";
 // 쿠키
 export {
   clearAllClientCookies,
@@ -10,20 +10,20 @@ export {
   getClientCookie,
   parseClientCookieNames,
   setClientCookie
-} from "./cookie/cookie.shared";
+} from "./packages/cookie/cookie.shared";
 // 날짜/시간
 export {
   formatClientDate,
   formatClientDateTime,
   formatClientRelative,
   formatClientTime
-} from "./datetime/dateTime.client";
+} from "./packages/datetime/dateTime.client";
 export {
   formatServerDate,
   formatServerDateTime,
   formatServerRelative,
   formatServerTime
-} from "./datetime/dateTime.server";
+} from "./packages/datetime/dateTime.server";
 export {
   addUtcDays,
   format24HourTime,
@@ -40,34 +40,34 @@ export {
   toDate,
   toIntlLocale,
   toUtcMidnight
-} from "./datetime/dateTime.shared";
+} from "./packages/datetime/dateTime.shared";
 export type {
   AppLocale,
   DateInput,
   DatePreset,
   TimePreset
-} from "./datetime/dateTime.shared";
+} from "./packages/datetime/dateTime.shared";
 // hooks
-export { useAvoidKeyboard } from "./hooks/useAvoidKeyboard";
-export { useClientDateTime } from "./hooks/useClientDateTime";
-export { useDebounce } from "./hooks/useDebounce";
-export { useDebouncedCallback } from "./hooks/useDebouncedCallback";
-export { useDoubleClick } from "./hooks/useDoubleClick";
-export { useGeolocation } from "./hooks/useGeolocation";
-export { useHasMounted } from "./hooks/useHasMounted";
-export { useIntersectionObserver } from "./hooks/useIntersectionObserver";
-export { useInterval } from "./hooks/useInterval";
-export { useKeyboardHeight } from "./hooks/useKeyboardHeight";
-export { useKeyboardListNavigation } from "./hooks/useKeyboardListNavigation";
-export { useLongPress } from "./hooks/useLongPress";
-export { usePreservedCallback } from "./hooks/usePreservedCallback";
-export { usePreservedReference } from "./hooks/usePreservedReference";
-export { useRefEffect } from "./hooks/useRefEffect";
-export { useRelativeDateTime } from "./hooks/useRelativeDateTime";
-export { useTimeout } from "./hooks/useTimeout";
-export { useToggleState } from "./hooks/useToggleState";
-export { useViewportHeight } from "./hooks/useViewportHeight";
-export { useViewportMatch } from "./hooks/useViewportMatch";
+export { useAvoidKeyboard } from "./packages/hooks/useAvoidKeyboard";
+export { useClientDateTime } from "./packages/hooks/useClientDateTime";
+export { useDebounce } from "./packages/hooks/useDebounce";
+export { useDebouncedCallback } from "./packages/hooks/useDebouncedCallback";
+export { useDoubleClick } from "./packages/hooks/useDoubleClick";
+export { useGeolocation } from "./packages/hooks/useGeolocation";
+export { useHasMounted } from "./packages/hooks/useHasMounted";
+export { useIntersectionObserver } from "./packages/hooks/useIntersectionObserver";
+export { useInterval } from "./packages/hooks/useInterval";
+export { useKeyboardHeight } from "./packages/hooks/useKeyboardHeight";
+export { useKeyboardListNavigation } from "./packages/hooks/useKeyboardListNavigation";
+export { useLongPress } from "./packages/hooks/useLongPress";
+export { usePreservedCallback } from "./packages/hooks/usePreservedCallback";
+export { usePreservedReference } from "./packages/hooks/usePreservedReference";
+export { useRefEffect } from "./packages/hooks/useRefEffect";
+export { useRelativeDateTime } from "./packages/hooks/useRelativeDateTime";
+export { useTimeout } from "./packages/hooks/useTimeout";
+export { useToggleState } from "./packages/hooks/useToggleState";
+export { useViewportHeight } from "./packages/hooks/useViewportHeight";
+export { useViewportMatch } from "./packages/hooks/useViewportMatch";
 // 유틸리티
 export {
   getLocalStorage,
@@ -76,36 +76,36 @@ export {
   removeSessionStorage,
   updateLocalStorage,
   updateSessionStorage
-} from "./utils/browserStorage";
+} from "./packages/utils/browserStorage";
 // 유틸리티
-export { buildContext } from "./utils/buildContext";
-export { getDeviceInfo } from "./utils/checkDevice";
-export type { DeviceInfo } from "./utils/checkDevice";
-export { NavigatorClipboard, NavigatorShare } from "./utils/clipboardShare";
+export { buildContext } from "./packages/utils/buildContext";
+export { getDeviceInfo } from "./packages/utils/checkDevice";
+export type { DeviceInfo } from "./packages/utils/checkDevice";
+export { NavigatorClipboard, NavigatorShare } from "./packages/utils/clipboardShare";
 export type {
   NavigatorClipboardProps,
   NavigatorClipboardResult,
   NavigatorShareProps,
   NavigatorShareResult
-} from "./utils/clipboardShare.types";
+} from "./packages/utils/clipboardShare.types";
 export {
   getFloatingHiddenTransform,
   getFloatingMotionPreset,
   getFloatingTransformOrigin
-} from "./utils/floatingMotion";
+} from "./packages/utils/floatingMotion";
 export type {
   FloatingMotionMode,
   FloatingMotionPreset,
   FloatingPlacement
-} from "./utils/floatingMotion";
+} from "./packages/utils/floatingMotion";
 // 유틸리티
-export { isEditableKeyboardTarget } from "./utils/keyboardTarget";
-export { mergeRefs } from "./utils/mergeRefs";
+export { isEditableKeyboardTarget } from "./packages/utils/keyboardTarget";
+export { mergeRefs } from "./packages/utils/mergeRefs";
 export {
   buildSeenValue,
   hasSeenKey,
   parseSeen,
   SEEN_STORAGE_KEY
-} from "./utils/seen";
-export { subscribeKeyboardHeight } from "./utils/subscribeKeyboardHeight";
+} from "./packages/utils/seen";
+export { subscribeKeyboardHeight } from "./packages/utils/subscribeKeyboardHeight";
 
