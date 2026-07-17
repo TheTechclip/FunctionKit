@@ -18,6 +18,7 @@
 	"files": [
 		"index.ts",
 		"packages/",
+		".agents/",
 		"README.md",
 		"LICENSE"
 	],
