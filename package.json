@@ -1,6 +1,6 @@
 {
 	"name": "@musecat/functionkit",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"description": "React 19 + TypeScript frontend utility library — hooks, components, datetime, cookie, and utils",
 	"keywords": [
 		"react",
