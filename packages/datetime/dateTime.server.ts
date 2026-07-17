@@ -72,9 +72,7 @@ export function formatServerDateTime(
 		timeZone: options.timeZone,
 		preset: options.timePreset ?? "24h-minute",
 	});
-	return dateText && timeText
-		? `${dateText} ${timeText}`
-		: dateText || timeText;
+	return dateText && timeText ? `${dateText} ${timeText}` : dateText || timeText;
 }
 
 export function formatServerRelative(

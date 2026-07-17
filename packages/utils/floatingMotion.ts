@@ -1,8 +1,4 @@
-export type FloatingMotionMode =
-	| "anchored"
-	| "center-selected"
-	| "modal-center"
-	| "mobile-sheet";
+export type FloatingMotionMode = "anchored" | "center-selected" | "modal-center" | "mobile-sheet";
 
 export type FloatingPlacement =
 	| "top-left"
@@ -21,9 +17,7 @@ export interface FloatingMotionPreset {
 	ease: string;
 }
 
-export const getFloatingMotionPreset = (
-	mode: FloatingMotionMode,
-): FloatingMotionPreset => {
+export const getFloatingMotionPreset = (mode: FloatingMotionMode): FloatingMotionPreset => {
 	if (mode === "mobile-sheet") {
 		return {
 			enterMs: 360,
@@ -55,9 +49,7 @@ export const getFloatingMotionPreset = (
 	};
 };
 
-export const getFloatingTransformOrigin = (
-	placement?: FloatingPlacement,
-): string => {
+export const getFloatingTransformOrigin = (placement?: FloatingPlacement): string => {
 	if (!placement) return "top center";
 
 	const [row, col] = placement.split("-") as [
@@ -90,10 +82,8 @@ export const getFloatingHiddenTransform = ({
 	if (row === "top") return "translateY(.4rem) scale(.975)";
 	if (row === "bottom") return "translateY(-.4rem) scale(.975)";
 
-	if (row === "middle") {
-		if (col === "left") return "translateX(.4rem) scale(.975)";
-		if (col === "right") return "translateX(-.4rem) scale(.975)";
-	}
+	if (col === "left") return "translateX(.4rem) scale(.975)";
+	if (col === "right") return "translateX(-.4rem) scale(.975)";
 
 	return "translateY(.4rem) scale(.975)";
 };

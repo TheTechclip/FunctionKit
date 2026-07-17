@@ -1,13 +1,12 @@
 "use client";
 
-import { createContext, type ReactNode, useContext, useMemo } from "react";
+import { createContext, type ReactNode, useContext } from "react";
 
 export function buildContext<T>(defaultValue: T) {
 	const Ctx = createContext<T>(defaultValue);
 
 	function Provider({ value, children }: { value: T; children: ReactNode }) {
-		const stable = useMemo(() => value, [value]);
-		return <Ctx.Provider value={stable}>{children}</Ctx.Provider>;
+		return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 	}
 
 	function useValue() {

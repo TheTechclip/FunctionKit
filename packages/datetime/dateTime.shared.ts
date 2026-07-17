@@ -17,8 +17,7 @@ type TimeParts = {
 };
 
 export function normalizeAppLocale(locale?: string): AppLocale {
-	const normalized =
-		typeof locale === "string" ? locale.trim().toLowerCase() : "";
+	const normalized = typeof locale === "string" ? locale.trim().toLowerCase() : "";
 	if (normalized === "kr" || normalized === "ko") return "kr";
 	if (normalized === "jp" || normalized === "ja") return "jp";
 	return "en";
@@ -45,15 +44,10 @@ export function toDate(value: DateInput): Date | null {
 }
 
 export function toUtcMidnight(date: Date): Date {
-	return new Date(
-		Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()),
-	);
+	return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
 }
 
-export function parseUtcDateInput(
-	value?: DateInput | null,
-	fallback?: DateInput,
-): Date | null {
+export function parseUtcDateInput(value?: DateInput | null, fallback?: DateInput): Date | null {
 	if (typeof value === "string") {
 		const trimmed = value.trim();
 		const match = DATE_ONLY_PATTERN.exec(trimmed);
@@ -128,11 +122,7 @@ function getTimeParts(date: Date, timeZone?: string): TimeParts {
 	};
 }
 
-export function formatLongDate(
-	date: Date,
-	locale?: string,
-	timeZone?: string,
-): string {
+export function formatLongDate(date: Date, locale?: string, timeZone?: string): string {
 	const localeKey = normalizeAppLocale(locale);
 	const { year, month, day } = getDateParts(date, timeZone);
 
@@ -177,11 +167,7 @@ export function formatKoreanTime(date: Date, timeZone?: string): string {
 	return `${meridiem} ${hour12}시 ${minute}분`;
 }
 
-export function formatTwelveHourTime(
-	date: Date,
-	locale?: string,
-	timeZone?: string,
-): string {
+export function formatTwelveHourTime(date: Date, locale?: string, timeZone?: string): string {
 	const localeKey = normalizeAppLocale(locale);
 	if (localeKey === "kr") {
 		const { hour, minute } = getTimeParts(date, timeZone);
@@ -298,25 +284,13 @@ function formatRelativeUnit(
 ): string {
 	if (locale === "kr") {
 		const suffix =
-			unit === "second"
-				? "초"
-				: unit === "minute"
-					? "분"
-					: unit === "hour"
-						? "시간"
-						: "일";
+			unit === "second" ? "초" : unit === "minute" ? "분" : unit === "hour" ? "시간" : "일";
 		return `${count}${suffix} 전`;
 	}
 
 	if (locale === "jp") {
 		const suffix =
-			unit === "second"
-				? "秒"
-				: unit === "minute"
-					? "分"
-					: unit === "hour"
-						? "時間"
-						: "日";
+			unit === "second" ? "秒" : unit === "minute" ? "分" : unit === "hour" ? "時間" : "日";
 		return `${count}${suffix}前`;
 	}
 
@@ -331,25 +305,13 @@ function formatRemainingUnit(
 ): string {
 	if (locale === "kr") {
 		const suffix =
-			unit === "second"
-				? "초"
-				: unit === "minute"
-					? "분"
-					: unit === "hour"
-						? "시간"
-						: "일";
+			unit === "second" ? "초" : unit === "minute" ? "분" : unit === "hour" ? "시간" : "일";
 		return `${count}${suffix}`;
 	}
 
 	if (locale === "jp") {
 		const suffix =
-			unit === "second"
-				? "秒"
-				: unit === "minute"
-					? "分"
-					: unit === "hour"
-						? "時間"
-						: "日";
+			unit === "second" ? "秒" : unit === "minute" ? "分" : unit === "hour" ? "時間" : "日";
 		return `${count}${suffix}`;
 	}
 

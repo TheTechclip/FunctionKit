@@ -6,10 +6,6 @@ export function useViewportMatch(mediaQuery: string): boolean {
 	const [isMatched, setIsMatched] = useState(false);
 
 	useEffect(() => {
-		if (typeof window === "undefined") {
-			return;
-		}
-
 		const mediaQueryList = window.matchMedia(mediaQuery);
 		const syncMatchState = () => {
 			setIsMatched(mediaQueryList.matches);

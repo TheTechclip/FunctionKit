@@ -7,9 +7,7 @@ import { usePreservedCallback } from "./usePreservedCallback";
 export function debounce<F extends (...args: unknown[]) => void>(
 	func: F,
 	debounceMs: number,
-	{
-		edges = ["leading", "trailing"],
-	}: { edges?: Array<"leading" | "trailing"> } = {},
+	{ edges = ["leading", "trailing"] }: { edges?: Array<"leading" | "trailing"> } = {},
 ): {
 	(...args: Parameters<F>): void;
 	cancel: () => void;
@@ -51,10 +49,7 @@ export function debounce<F extends (...args: unknown[]) => void>(
 		}, debounceMs);
 	};
 
-	const debounced = function (
-		this: ThisParameterType<F>,
-		...args: Parameters<F>
-	) {
+	const debounced = function (this: ThisParameterType<F>, ...args: Parameters<F>) {
 		pendingThis = this;
 		pendingArgs = args;
 

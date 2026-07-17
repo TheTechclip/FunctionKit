@@ -10,18 +10,13 @@ type UseKeyboardListNavigationOptions = {
 	itemCount: number;
 };
 
-export function useKeyboardListNavigation({
-	itemCount,
-}: UseKeyboardListNavigationOptions) {
+export function useKeyboardListNavigation({ itemCount }: UseKeyboardListNavigationOptions) {
 	const [activeIndex, setActiveIndex] = useState(-1);
 	const itemRefs = useRef<(HTMLElement | null)[]>([]);
 
-	const setItemRef = useCallback(
-		(index: number, element: HTMLElement | null) => {
-			itemRefs.current[index] = element;
-		},
-		[],
-	);
+	const setItemRef = useCallback((index: number, element: HTMLElement | null) => {
+		itemRefs.current[index] = element;
+	}, []);
 
 	const focusItem = useCallback((index: number) => {
 		const target = itemRefs.current[index];
@@ -59,18 +54,6 @@ export function useKeyboardListNavigation({
 
 	const moveActiveItem = useCallback(
 		(key: string) => {
-			if (itemCount === 0) {
-				return false;
-			}
-
-			if (key === "Home") {
-				return focusItem(0);
-			}
-
-			if (key === "End") {
-				return focusItem(itemCount - 1);
-			}
-
 			if (key === "ArrowDown" || key === "ArrowRight") {
 				const nextIndex = activeIndex < 0 ? 0 : (activeIndex + 1) % itemCount;
 				return focusItem(nextIndex);
@@ -78,15 +61,13 @@ export function useKeyboardListNavigation({
 
 			if (key === "ArrowUp" || key === "ArrowLeft") {
 				const nextIndex =
-					activeIndex < 0
-						? itemCount - 1
-						: (activeIndex - 1 + itemCount) % itemCount;
+					activeIndex < 0 ? itemCount - 1 : (activeIndex - 1 + itemCount) % itemCount;
 				return focusItem(nextIndex);
 			}
 
-			return false;
+			return focusBoundaryItem(key);
 		},
-		[activeIndex, focusItem, itemCount],
+		[activeIndex, focusItem, focusBoundaryItem, itemCount],
 	);
 
 	const clickActiveItem = useCallback(() => {
@@ -99,10 +80,7 @@ export function useKeyboardListNavigation({
 	}, [activeIndex]);
 
 	const handleListKeyDown = useCallback(
-		(
-			event: React.KeyboardEvent<HTMLElement>,
-			options?: { container?: HTMLElement | null },
-		) => {
+		(event: React.KeyboardEvent<HTMLElement>, options?: { container?: HTMLElement | null }) => {
 			if (itemCount === 0 || event.defaultPrevented) {
 				return;
 			}
@@ -144,15 +122,9 @@ export function useKeyboardListNavigation({
 				return;
 			}
 
-			if (moveActiveItem(event.key)) {
-				return;
-			}
-
-			if (focusBoundaryItem(event.key)) {
-				return;
-			}
+			moveActiveItem(event.key);
 		},
-		[clickActiveItem, moveActiveItem, focusBoundaryItem, itemCount],
+		[clickActiveItem, moveActiveItem, itemCount],
 	);
 
 	useEffect(() => {

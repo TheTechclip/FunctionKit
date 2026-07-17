@@ -1,13 +1,12 @@
-import { describe, test, expect, vi } from "vitest";
 import { renderHook } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
 import { usePreservedCallback } from "@/packages/hooks/usePreservedCallback";
 
 describe("usePreservedCallback", () => {
 	test("returns a stable function reference across renders", () => {
-		const { result, rerender } = renderHook(
-			({ cb }) => usePreservedCallback(cb),
-			{ initialProps: { cb: vi.fn() } },
-		);
+		const { result, rerender } = renderHook(({ cb }) => usePreservedCallback(cb), {
+			initialProps: { cb: vi.fn() },
+		});
 		const firstRef = result.current;
 		rerender({ cb: vi.fn() });
 		expect(result.current).toBe(firstRef);
@@ -16,10 +15,9 @@ describe("usePreservedCallback", () => {
 	test("invokes the latest callback", () => {
 		const fn1 = vi.fn();
 		const fn2 = vi.fn();
-		const { result, rerender } = renderHook(
-			({ cb }) => usePreservedCallback(cb),
-			{ initialProps: { cb: fn1 } },
-		);
+		const { result, rerender } = renderHook(({ cb }) => usePreservedCallback(cb), {
+			initialProps: { cb: fn1 },
+		});
 		rerender({ cb: fn2 });
 		result.current();
 		expect(fn2).toHaveBeenCalledOnce();

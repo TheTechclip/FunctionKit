@@ -1,5 +1,5 @@
+import path from "node:path";
 import { defineConfig } from "vitest/config";
-import path from "path";
 
 export default defineConfig({
 	test: {
@@ -7,6 +7,12 @@ export default defineConfig({
 		setupFiles: ["./tests/setup.ts"],
 		include: ["tests/**/*.test.{ts,tsx}"],
 		globals: true,
+		coverage: {
+			provider: "v8",
+			include: ["packages/**/*.{ts,tsx}"],
+			exclude: ["packages/**/*.types.ts"],
+			reporter: ["text", "lcov"],
+		},
 	},
 	resolve: {
 		alias: {

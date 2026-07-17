@@ -1,10 +1,14 @@
-import { describe, test, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import { debounce, useDebounce } from "@/packages/hooks/useDebounce";
 
 describe("debounce (standalone)", () => {
-	beforeEach(() => { vi.useFakeTimers(); });
-	afterEach(() => { vi.useRealTimers(); });
+	beforeEach(() => {
+		vi.useFakeTimers();
+	});
+	afterEach(() => {
+		vi.useRealTimers();
+	});
 
 	test("trailing: calls function after delay", () => {
 		const fn = vi.fn();
@@ -57,8 +61,12 @@ describe("debounce (standalone)", () => {
 });
 
 describe("useDebounce", () => {
-	beforeEach(() => { vi.useFakeTimers(); });
-	afterEach(() => { vi.useRealTimers(); });
+	beforeEach(() => {
+		vi.useFakeTimers();
+	});
+	afterEach(() => {
+		vi.useRealTimers();
+	});
 
 	test("returns a debounced function", () => {
 		const fn = vi.fn();
@@ -67,5 +75,22 @@ describe("useDebounce", () => {
 		expect(fn).not.toHaveBeenCalled();
 		vi.advanceTimersByTime(100);
 		expect(fn).toHaveBeenCalledOnce();
+	});
+
+	test("works with leading: true", () => {
+		const fn = vi.fn();
+		const { result } = renderHook(() => useDebounce(fn, 100, { leading: true }));
+		result.current();
+		expect(fn).toHaveBeenCalledOnce();
+		vi.advanceTimersByTime(100);
+		expect(fn).toHaveBeenCalledTimes(1);
+	});
+
+	test("works with trailing: false", () => {
+		const fn = vi.fn();
+		const { result } = renderHook(() => useDebounce(fn, 100, { trailing: false }));
+		result.current();
+		vi.advanceTimersByTime(100);
+		expect(fn).not.toHaveBeenCalled();
 	});
 });

@@ -12,10 +12,7 @@ type UseRelativeDateTimeOptions = {
 	updateIntervalMs?: number;
 };
 
-export function useRelativeDateTime(
-	value: DateInput,
-	options?: UseRelativeDateTimeOptions,
-) {
+export function useRelativeDateTime(value: DateInput, options?: UseRelativeDateTimeOptions) {
 	const [ready, setReady] = useState(false);
 	const [text, setText] = useState("");
 	const [isRelative, setIsRelative] = useState(false);

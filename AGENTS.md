@@ -103,3 +103,17 @@ Never write raw `createContext` + `Provider` + `useContext` boilerplate. Use `bu
 - When hooks, components, or utils are added, modified, or removed, update the corresponding `.agents/references/` documentation.
 - When the barrel (`index.ts`) export list changes, update the Barrel Export Mapping section above.
 - Before using any feature, read the corresponding `.agents/references/` doc first.
+
+### Reference File Mapping
+
+| Category | File(s) |
+|---|---|
+| Components | `.agents/references/components/SwitchCase.md`, `ScrolltoTop.md`, `ViewportPortal.md` |
+| Hooks | `.agents/references/hooks/usePreservedCallback.md`, `usePreservedReference.md`, `useRefEffect.md`, `useDebounce.md`, `useDebouncedCallback.md`, `useInterval.md`, `useTimeout.md`, `useKeyboardListNavigation.md`, `useLongPress.md`, `useDoubleClick.md`, `useIntersectionObserver.md`, `useCheckInvisible.md`, `useCheckScroll.md`, `useViewportHeight.md`, `useViewportMatch.md`, `useAvoidKeyboard.md`, `useToggleState.md`, `useHasMounted.md`, `useGeolocation.md`, `useKeyboardHeight.md`, `useClientDateTime.md`, `useRelativeDateTime.md` |
+| Cookie | `.agents/references/cookie/cookie.md` |
+| DateTime | `.agents/references/datetime/dateTime.shared.md`, `dateTime.client.md`, `dateTime.server.md` |
+| Utils | `.agents/references/utils/buildContext.md`, `mergeRefs.md`, `floatingMotion.md`, `browserStorage.md`, `getDeviceInfo.md`, `clipboardShare.md`, `isEditableKeyboardTarget.md`, `seen.md`, `subscribeKeyboardHeight.md` |
+
+### usePreservedCallback Trade-off
+
+`usePreservedCallback` uses `useRef` + `useEffect` to keep a stable callback reference that always calls the latest version. Because the ref is synced via `useEffect` (after paint), the returned callback may hold a **stale value** during the first render or in the gap between a re-render and the effect flush. In practice this is never an issue — the callback is only invoked in event handlers that fire post-paint. This is the same pattern used by react-hook-form, Radix UI, and others. If synchronous invocation during render is required, use a regular `useCallback` with inline deps instead.
