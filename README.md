@@ -8,6 +8,22 @@ A React 19 + TypeScript UI F.E. utility library.
 npm install @musecat/functionkit
 ```
 
+This package ships **raw TypeScript source** (no prebuilt bundle), so your app must transpile it.
+
+### Next.js setup
+
+Add the package to `transpilePackages` in `next.config.ts`:
+
+```ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  transpilePackages: ["@musecat/functionkit"],
+};
+
+export default nextConfig;
+```
+
 ## Usage
 
 ```tsx
@@ -21,10 +37,10 @@ export default function Example() {
   });
 
   return (
-    <View column gap={24}>
-      <Input onChange={(e) => handleSearch(e.target.value)} />
-      <Text type="Caption1">{now}</Text>
-    </View>
+    <div>
+      <input onChange={(e) => handleSearch(e.target.value)} />
+      <span>{now}</span>
+    </div>
   );
 }
 ```
@@ -37,7 +53,7 @@ This package includes `.agents/references/` directory with detailed documentatio
 
 - [toss/react-simplikit](https://github.com/toss/react-simplikit/)
 
-Built with [TypeScript](https://www.typescriptlang.org/) and [tsc-alias](https://github.com/Tober68/tsc-alias).
+Published as raw TypeScript source and built with [TypeScript](https://www.typescriptlang.org/).
 
 ## License
 
