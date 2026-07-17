@@ -88,11 +88,7 @@ export function useGeolocation(options?: UseGeolocationOptions) {
 	const getCurrentPosition = useCallback(() => {
 		if (!isSupported()) return;
 		setState((prev) => ({ ...prev, loading: true }));
-		navigator.geolocation.getCurrentPosition(
-			handleSuccess,
-			handleError,
-			geoOptions(),
-		);
+		navigator.geolocation.getCurrentPosition(handleSuccess, handleError, geoOptions());
 	}, [handleSuccess, handleError, geoOptions, isSupported]);
 
 	const startTracking = useCallback(() => {

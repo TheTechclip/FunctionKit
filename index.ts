@@ -6,9 +6,9 @@ export {
 	clearAllClientCookies,
 	clearClientCookie,
 	getClientCookie,
-	parseClientCookieNames,
 	setClientCookie,
 } from "./packages/cookie/cookie.shared";
+export { parseClientCookieNames } from "./packages/cookie/cookieNames.shared";
 export {
 	formatClientDate,
 	formatClientDateTime,

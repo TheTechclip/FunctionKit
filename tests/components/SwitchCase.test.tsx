@@ -1,7 +1,6 @@
-import { describe, test, expect } from "vitest";
 import { render } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 import { SwitchCase } from "@/packages/components/SwitchCase";
-import React from "react";
 
 describe("SwitchCase", () => {
 	const cases = {

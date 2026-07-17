@@ -1,10 +1,6 @@
-import { describe, test, expect, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
-import {
-	ViewportPortal,
-	getViewportPortalRoot,
-} from "@/packages/components/ViewportPortal";
-import React from "react";
+import { beforeEach, describe, expect, test } from "vitest";
+import { getViewportPortalRoot, ViewportPortal } from "@/packages/components/ViewportPortal";
 
 describe("ViewportPortal", () => {
 	beforeEach(() => {
@@ -23,6 +19,14 @@ describe("ViewportPortal", () => {
 		const root2 = getViewportPortalRoot();
 		expect(root1).toBe(root2);
 		expect(document.querySelectorAll("#viewport-portal-root").length).toBe(1);
+	});
+
+	test("getViewportPortalRoot returns null when document is undefined (SSR)", () => {
+		const origDocument = global.document;
+		// @ts-expect-error
+		delete global.document;
+		expect(getViewportPortalRoot()).toBeNull();
+		global.document = origDocument;
 	});
 
 	test("ViewportPortal renders children into the portal root", () => {

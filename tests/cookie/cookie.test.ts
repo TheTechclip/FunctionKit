@@ -1,11 +1,11 @@
-import { describe, test, expect, beforeEach, vi, afterEach } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
 import {
-	parseClientCookieNames,
+	clearAllClientCookies,
+	clearClientCookie,
 	getClientCookie,
 	setClientCookie,
-	clearClientCookie,
-	clearAllClientCookies,
 } from "@/packages/cookie/cookie.shared";
+import { parseClientCookieNames } from "@/packages/cookie/cookieNames.shared";
 
 describe("cookie module", () => {
 	beforeEach(() => {
@@ -44,6 +44,11 @@ describe("cookie module", () => {
 			expect(getClientCookie("baz")).toBe("qux");
 		});
 
+		test("skips cookies with empty name when parsing", () => {
+			document.cookie = "=value; foo=bar";
+			expect(getClientCookie("foo")).toBe("bar");
+		});
+
 		test("returns undefined if cookie does not exist", () => {
 			document.cookie = "foo=bar";
 			expect(getClientCookie("missing")).toBeUndefined();
@@ -51,7 +56,7 @@ describe("cookie module", () => {
 
 		test("handles undefined document", () => {
 			const originalDocument = global.document;
-			// @ts-ignore
+			// @ts-expect-error
 			delete global.document;
 
 			expect(getClientCookie("foo")).toBeUndefined();
@@ -61,6 +66,37 @@ describe("cookie module", () => {
 	});
 
 	describe("setClientCookie", () => {
+		test("handles undefined document in setClientCookie", () => {
+			const origDocument = global.document;
+			// @ts-expect-error
+			delete global.document;
+			setClientCookie("foo", "bar");
+			global.document = origDocument;
+		});
+
+		test("parseClientCookie handles malformed entries", () => {
+			const result = parseClientCookieNames("=value; key");
+			expect(result).toEqual(["key"]);
+		});
+
+		test("clearAllClientCookies handles empty cookie name", () => {
+			const mockDoc = { cookie: "=1;;" };
+			const entries = clearAllClientCookies({ documentRef: mockDoc as any });
+			expect(Array.isArray(entries)).toBe(true);
+		});
+
+		test("clearAllClientCookies skips entries with empty name", () => {
+			const mockDoc = { cookie: "a=1;;b=2" };
+			const entries = clearAllClientCookies({ documentRef: mockDoc as any });
+			// Entries with empty names should be skipped in the loop
+			expect(entries).toEqual(["a", "b"]);
+		});
+
+		test("setClientCookie with days=0 does not add expires", () => {
+			setClientCookie("foo", "bar", 0);
+			expect(document.cookie).toBe("foo=bar; path=/");
+		});
+
 		test("sets cookie with name and value", () => {
 			setClientCookie("foo", "bar");
 			expect(document.cookie).toBe("foo=bar; path=/");

@@ -1,5 +1,5 @@
-import { describe, test, expect, vi } from "vitest";
 import { render } from "@testing-library/react";
+import { describe, expect, test, vi } from "vitest";
 import { ScrolltoTop } from "@/packages/components/ScrolltoTop";
 
 describe("ScrolltoTop", () => {

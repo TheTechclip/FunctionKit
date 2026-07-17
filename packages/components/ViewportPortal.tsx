@@ -18,8 +18,7 @@ export function getViewportPortalRoot() {
 	const root = document.createElement("div");
 	root.id = VIEWPORT_PORTAL_ROOT_ID;
 	root.setAttribute("data-viewport-portal-root", "true");
-	root.style.cssText =
-		"position:fixed;inset:0;pointer-events:none;z-index:9999;";
+	root.style.cssText = "position:fixed;inset:0;pointer-events:none;z-index:9999;";
 	document.body.appendChild(root);
 	return root;
 }

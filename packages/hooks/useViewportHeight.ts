@@ -6,8 +6,7 @@ export function useViewportHeight() {
 	const [height, setHeight] = useState(0);
 
 	useEffect(() => {
-		const update = () =>
-			setHeight(window.visualViewport?.height ?? window.innerHeight);
+		const update = () => setHeight(window.visualViewport?.height ?? window.innerHeight);
 
 		update();
 		window.visualViewport?.addEventListener("resize", update);

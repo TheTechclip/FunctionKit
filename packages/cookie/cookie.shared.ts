@@ -22,10 +22,7 @@ type ClearAllClientCookiesOptions = ClearClientCookieOptions & {
 	cookieString?: string;
 };
 
-function findClientCookie(
-	name: string,
-	documentRef: DocumentCookieRef,
-): string | undefined {
+function findClientCookie(name: string, documentRef: DocumentCookieRef): string | undefined {
 	const parsed = parseClientCookie(documentRef.cookie);
 	return parsed[name];
 }
@@ -42,15 +39,8 @@ function parseClientCookie(cookieString: string): Record<string, string> {
 		}, {});
 }
 
-export function parseClientCookieNames(cookieString: string): string[] {
-	return cookieString
-		.split(";")
-		.map((entry) => {
-			const eqPos = entry.indexOf("=");
-			return eqPos > -1 ? entry.slice(0, eqPos).trim() : entry.trim();
-		})
-		.filter(Boolean);
-}
+import { parseClientCookieNames } from "./cookieNames.shared";
+export { parseClientCookieNames };
 
 export function getClientCookie(name: string): string | undefined {
 	if (typeof document === "undefined") {
@@ -75,28 +65,14 @@ export function setClientCookie(name: string, value: string, days?: number) {
 	document.cookie = `${name}=${encodeURIComponent(value)}${expires}; path=/`;
 }
 
-export function clearClientCookie(
-	name: string,
-	options: ClearClientCookieOptions = {},
-): void {
-	const {
-		hostname = window.location.hostname,
-		path = "/",
-		documentRef = document,
-	} = options;
+export function clearClientCookie(name: string, options: ClearClientCookieOptions = {}): void {
+	const { hostname = window.location.hostname, path = "/", documentRef = document } = options;
 
 	documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path}; domain=${hostname};`;
 }
 
-export function clearAllClientCookies(
-	options: ClearAllClientCookiesOptions = {},
-): string[] {
-	const {
-		documentRef = document,
-		cookieStore,
-		includeRoot = false,
-		cookieString,
-	} = options;
+export function clearAllClientCookies(options: ClearAllClientCookiesOptions = {}): string[] {
+	const { documentRef = document, cookieStore, includeRoot = false, cookieString } = options;
 
 	const entries = cookieString
 		? parseClientCookieNames(cookieString)
@@ -124,8 +100,6 @@ export function clearAllClientCookies(
 	}
 
 	for (const name of entries) {
-		if (!name) continue;
-
 		for (const path of paths) {
 			for (let i = 0; i < hostnameParts.length; i++) {
 				const domain = hostnameParts.slice(i).join(".");

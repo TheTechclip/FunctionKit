@@ -7,7 +7,7 @@ export function useCheckInvisible(className: string) {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			const el = document.querySelector(`.${className}`);
+			const el = document.querySelector(`.${CSS.escape(className)}`);
 			if (el) {
 				const { top } = el.getBoundingClientRect();
 				setIsInvisible(top < 0);

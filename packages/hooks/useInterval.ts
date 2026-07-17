@@ -15,8 +15,7 @@ type IntervalOptions =
 export function useInterval(callback: () => void, options: IntervalOptions) {
 	const delay = typeof options === "number" ? options : options.delay;
 	const immediate = typeof options === "number" ? false : options.immediate;
-	const enabled =
-		typeof options === "number" ? true : (options.enabled ?? true);
+	const enabled = typeof options === "number" ? true : (options.enabled ?? true);
 
 	const preservedCallback = usePreservedCallback(callback);
 	const immediateCalledRef = useRef(false);

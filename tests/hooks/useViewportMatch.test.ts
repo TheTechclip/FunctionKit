@@ -1,5 +1,5 @@
-import { describe, test, expect, vi, beforeEach } from "vitest";
 import { renderHook } from "@testing-library/react";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 import { useViewportMatch } from "@/packages/hooks/useViewportMatch";
 
 describe("useViewportMatch", () => {

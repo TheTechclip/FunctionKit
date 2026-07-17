@@ -14,12 +14,7 @@ export type UseLongPressOptions<E extends HTMLElement> = {
 
 export function useLongPress<E extends HTMLElement = HTMLElement>(
 	onLongPress: (event: MouseEvent<E> | TouchEvent<E>) => void,
-	{
-		delay = 500,
-		moveThreshold,
-		onClick,
-		onLongPressEnd,
-	}: UseLongPressOptions<E> = {},
+	{ delay = 500, moveThreshold, onClick, onLongPressEnd }: UseLongPressOptions<E> = {},
 ) {
 	const timeoutRef = useRef<number | null>(null);
 	const isLongPressActiveRef = useRef(false);
@@ -32,22 +27,18 @@ export function useLongPress<E extends HTMLElement = HTMLElement>(
 	savedOnClick.current = onClick;
 	savedOnLongPressEnd.current = onLongPressEnd;
 
-	const hasThreshold =
-		moveThreshold?.x !== undefined || moveThreshold?.y !== undefined;
+	const hasThreshold = moveThreshold?.x !== undefined || moveThreshold?.y !== undefined;
 
-	const getClientPosition = useCallback(
-		(event: MouseEvent<E> | TouchEvent<E>) => {
-			if ("touches" in event.nativeEvent) {
-				const touch = event.nativeEvent.touches[0];
-				return { x: touch.clientX, y: touch.clientY };
-			}
-			return {
-				x: event.nativeEvent.clientX,
-				y: event.nativeEvent.clientY,
-			};
-		},
-		[],
-	);
+	const getClientPosition = useCallback((event: MouseEvent<E> | TouchEvent<E>) => {
+		if ("touches" in event.nativeEvent) {
+			const touch = event.nativeEvent.touches[0];
+			return { x: touch.clientX, y: touch.clientY };
+		}
+		return {
+			x: event.nativeEvent.clientX,
+			y: event.nativeEvent.clientY,
+		};
+	}, []);
 
 	const isMovedBeyondThreshold = useCallback(
 		(event: MouseEvent<E> | TouchEvent<E>) => {
@@ -113,8 +104,6 @@ export function useLongPress<E extends HTMLElement = HTMLElement>(
 		onMouseLeave: cancelLongPress,
 		onTouchStart: handlePressStart,
 		onTouchEnd: handlePressEnd,
-		...(hasThreshold
-			? { onTouchMove: handlePressMove, onMouseMove: handlePressMove }
-			: {}),
+		...(hasThreshold ? { onTouchMove: handlePressMove, onMouseMove: handlePressMove } : {}),
 	};
 }

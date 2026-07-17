@@ -31,3 +31,7 @@ function InfiniteScroll({ onLoadMore }: { onLoadMore: () => void }) {
   return <div ref={ref}>...</div>;
 }
 ```
+
+## Trade-off
+
+`usePreservedCallback` uses `useRef` + `useEffect` to keep a stable callback reference that always calls the latest version. Because the ref is synced via `useEffect` (after paint), the returned callback may hold a **stale value** during the first render or in the gap between a re-render and the effect flush. In practice this is never an issue — the callback is only invoked in event handlers that fire post-paint. This is the same pattern used by react-hook-form, Radix UI, and others. If synchronous invocation during render is required, use a regular `useCallback` with inline deps instead.

@@ -1,6 +1,23 @@
 {
 	"name": "@musecat/functionkit",
 	"version": "1.0.2",
+	"description": "React 19 + TypeScript frontend utility library — hooks, components, datetime, cookie, and utils",
+	"keywords": [
+		"react",
+		"hooks",
+		"typescript",
+		"utility",
+		"frontend"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/TheTechclip/FunctionKit.git"
+	},
+	"bugs": {
+		"url": "https://github.com/TheTechclip/FunctionKit/issues"
+	},
+	"homepage": "https://musecat.app",
 	"type": "module",
 	"main": "./index.ts",
 	"types": "./index.ts",
@@ -11,7 +28,8 @@
 	"scripts": {
 		"lint": "biome check",
 		"format": "prettier --write . && biome format --write",
-		"test": "vitest run"
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage"
 	},
 	"peerDependencies": {
 		"react": "^19.0.0",
@@ -22,6 +40,7 @@
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/react": "^16.2.0",
 		"@testing-library/user-event": "^14.6.1",
+		"@vitest/coverage-v8": "^4.1.10",
 		"jsdom": "^26.0.0",
 		"prettier": "^3.9.5",
 		"vitest": "^4.1.10"
