@@ -12,6 +12,7 @@ export function subscribeKeyboardHeight({
 	throttleMs = 16,
 }: SubscribeKeyboardHeightOptions) {
 	let ticking = false;
+	let disposed = false;
 	let lastHeight = 0;
 
 	const notify = (height: number) => {
@@ -19,6 +20,7 @@ export function subscribeKeyboardHeight({
 		ticking = true;
 
 		const run = () => {
+			if (disposed) return;
 			if (height !== lastHeight) {
 				lastHeight = height;
 				callback(height);
@@ -47,6 +49,7 @@ export function subscribeKeyboardHeight({
 
 	return {
 		unsubscribe() {
+			disposed = true;
 			window.visualViewport?.removeEventListener("resize", handleResize);
 			window.visualViewport?.removeEventListener("scroll", handleResize);
 		},

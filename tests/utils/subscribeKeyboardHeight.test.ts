@@ -136,4 +136,37 @@ describe("subscribeKeyboardHeight", () => {
 		unsubscribe();
 		expect(visualViewport.removeEventListener).toHaveBeenCalled();
 	});
+
+	test("does not call callback after unsubscribe with throttle > 0", () => {
+		vi.useFakeTimers();
+		const callback = vi.fn();
+		const { unsubscribe } = subscribeKeyboardHeight({ callback, throttleMs: 50 });
+
+		// Trigger resize, which schedules a setTimeout
+		visualViewport.height = 400;
+		visualViewport.dispatchEvent?.(new Event("resize"));
+		if (visualViewport.addEventListener.mock.calls.length > 0) {
+			const handler = visualViewport.addEventListener.mock.calls[0][1];
+			handler?.();
+		}
+
+		unsubscribe();
+		vi.advanceTimersByTime(100);
+		expect(callback).not.toHaveBeenCalled();
+	});
+
+	test("does not call callback after unsubscribe with throttle === 0", () => {
+		vi.useFakeTimers();
+		const callback = vi.fn();
+		const { unsubscribe } = subscribeKeyboardHeight({ callback, throttleMs: 0 });
+
+		unsubscribe();
+
+		visualViewport.height = 400;
+		if (visualViewport.addEventListener.mock.calls.length > 0) {
+			const handler = visualViewport.addEventListener.mock.calls[0][1];
+			handler?.();
+		}
+		expect(callback).not.toHaveBeenCalled();
+	});
 });

@@ -49,13 +49,20 @@ export const getFloatingMotionPreset = (mode: FloatingMotionMode): FloatingMotio
 	};
 };
 
-export const getFloatingTransformOrigin = (placement?: FloatingPlacement): string => {
+type FloatingRow = "top" | "middle" | "bottom";
+type FloatingCol = "left" | "center" | "right";
+
+function parsePlacement(placement: FloatingPlacement): [FloatingRow, FloatingCol] {
+	const [row, col] = placement.split("-") as [FloatingRow, FloatingCol];
+	return [row, col];
+}
+
+export const getFloatingTransformOrigin = (
+	placement?: FloatingPlacement,
+): string => {
 	if (!placement) return "top center";
 
-	const [row, col] = placement.split("-") as [
-		"top" | "middle" | "bottom",
-		"left" | "center" | "right",
-	];
+	const [row, col] = parsePlacement(placement);
 	const y = row === "top" ? "bottom" : row === "bottom" ? "top" : "center";
 	const x = col === "right" ? "right" : col === "left" ? "left" : "center";
 
@@ -74,10 +81,7 @@ export const getFloatingHiddenTransform = ({
 	if (mode === "center-selected") return "translateY(.45rem) scale(.99)";
 	if (!placement) return "translateY(.4rem) scale(.975)";
 
-	const [row, col] = placement.split("-") as [
-		"top" | "middle" | "bottom",
-		"left" | "center" | "right",
-	];
+	const [row, col] = parsePlacement(placement);
 
 	if (row === "top") return "translateY(.4rem) scale(.975)";
 	if (row === "bottom") return "translateY(-.4rem) scale(.975)";

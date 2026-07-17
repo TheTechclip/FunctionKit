@@ -134,7 +134,7 @@ describe("cookie module", () => {
 			clearClientCookie("foo", {
 				hostname: "custom.com",
 				path: "/custom",
-				documentRef: mockDoc as any,
+				documentRef: mockDoc,
 			});
 			expect(mockDoc.cookie).toBe(
 				"foo=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/custom; domain=custom.com;",
@@ -145,7 +145,7 @@ describe("cookie module", () => {
 	describe("clearAllClientCookies", () => {
 		test("clears all cookies based on documentRef.cookie", () => {
 			const mockDoc = { cookie: "a=1; b=2" };
-			const entries = clearAllClientCookies({ documentRef: mockDoc as any });
+			const entries = clearAllClientCookies({ documentRef: mockDoc });
 
 			expect(entries).toEqual(["a", "b"]);
 			expect(mockDoc.cookie).toContain(
@@ -158,8 +158,8 @@ describe("cookie module", () => {
 			const mockDoc = { cookie: "a=1; b=2" };
 
 			const entries = clearAllClientCookies({
-				documentRef: mockDoc as any,
-				cookieStore: cookieStore as any,
+				documentRef: mockDoc,
+				cookieStore,
 			});
 
 			expect(entries).toEqual(["a", "b"]);
@@ -169,7 +169,7 @@ describe("cookie module", () => {
 
 		test("clears cookies from root path when includeRoot is true", () => {
 			const mockDoc = { cookie: "a=1" };
-			clearAllClientCookies({ documentRef: mockDoc as any, includeRoot: true });
+			clearAllClientCookies({ documentRef: mockDoc, includeRoot: true });
 
 			// The function iterates and updates document.cookie, so it will contain the last assignment.
 			// With paths ["/", "/test/path"] and domain "example.com"
@@ -181,7 +181,7 @@ describe("cookie module", () => {
 		test("uses provided cookieString instead of documentRef.cookie", () => {
 			const mockDoc = { cookie: "a=1" };
 			const entries = clearAllClientCookies({
-				documentRef: mockDoc as any,
+				documentRef: mockDoc,
 				cookieString: "x=1; y=2",
 			});
 

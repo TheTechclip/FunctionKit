@@ -35,3 +35,7 @@ function LazyImage() {
   return <div ref={ref}>...</div>;
 }
 ```
+
+## Trade-off
+
+The `options` object is used as a `useMemo` dependency. If you pass an inline object (`{ threshold: 0.5 }`) on every render, the `IntersectionObserver` is recreated each time. Memoize options with `useMemo` or define them outside the component for stable references.

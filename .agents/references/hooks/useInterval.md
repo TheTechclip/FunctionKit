@@ -38,3 +38,7 @@ function PollingComponent() {
   return <div>{data}</div>;
 }
 ```
+
+## Trade-off
+
+Internally uses `usePreservedCallback` to stabilize the callback. The callback always reflects the latest closure, but during the render-to-effect gap a stale version could theoretically fire. In practice this is never an issue since interval callbacks fire asynchronously after paint. See `usePreservedCallback` trade-off for details.
