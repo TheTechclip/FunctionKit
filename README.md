@@ -29,6 +29,10 @@ export default function Example() {
 }
 ```
 
+## References
+
+This package includes `.agents/references/` directory with detailed documentation for every hook, component, and utility. Use it alongside TypeScript definitions as a guide when building with `@musecat/functionkit`.
+
 ## Acknowledgements
 
 - [toss/react-simplikit](https://github.com/toss/react-simplikit/)
