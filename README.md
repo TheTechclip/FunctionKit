@@ -37,6 +37,8 @@ This package includes `.agents/references/` directory with detailed documentatio
 
 - [toss/react-simplikit](https://github.com/toss/react-simplikit/)
 
+Built with [TypeScript](https://www.typescriptlang.org/) and [tsc-alias](https://github.com/Tober68/tsc-alias).
+
 ## License
 
 [MIT License](./LICENSE) © Musecat Team.
