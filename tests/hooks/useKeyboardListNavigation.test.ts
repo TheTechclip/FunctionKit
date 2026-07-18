@@ -156,6 +156,27 @@ describe("useKeyboardListNavigation", () => {
 		expect(result.current.focusBoundaryItem("ArrowDown")).toBe(false);
 	});
 
+	test("moveActiveItem is safe to call directly for an empty list", () => {
+		const { result } = renderHook(() => useKeyboardListNavigation({ itemCount: 0 }));
+		expect(result.current.moveActiveItem("ArrowDown")).toBe(false);
+		expect(result.current.activeIndex).toBe(-1);
+	});
+
+	test("clamps the active index when the item count shrinks and resets it when empty", () => {
+		const { result, rerender } = renderHook(
+			({ itemCount }) => useKeyboardListNavigation({ itemCount }),
+			{ initialProps: { itemCount: 3 } },
+		);
+
+		act(() => {
+			result.current.setActiveIndex(2);
+		});
+		rerender({ itemCount: 2 });
+		expect(result.current.activeIndex).toBe(1);
+		rerender({ itemCount: 0 });
+		expect(result.current.activeIndex).toBe(-1);
+	});
+
 	test("focusBoundaryItem returns false for unmatched key", () => {
 		const { result } = renderHook(() => useKeyboardListNavigation({ itemCount: 3 }));
 		expect(result.current.focusBoundaryItem("Tab")).toBe(false);

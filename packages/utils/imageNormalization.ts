@@ -107,6 +107,12 @@ export function getNormalizedJpegFilename(
 	return `${stem}_${now}_${random.toString(36).slice(2, 6)}.jpg`;
 }
 
+/** Releases a preview URL returned from `normalizeUploadImage`. Safe during SSR and for empty values. */
+export function revokeObjectUrl(url: string | null | undefined): void {
+	if (!url || typeof URL === "undefined" || typeof URL.revokeObjectURL !== "function") return;
+	URL.revokeObjectURL(url);
+}
+
 function closeSource(source: CanvasSource): void {
 	if (isImageBitmap(source)) source.close();
 }

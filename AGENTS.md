@@ -5,7 +5,7 @@ React 19 frontend utility library. Single package, ESM.
 ## Import Convention Enforcement (Mandatory)
 
 - **Barrel imports are the rule:** `import { useDebounce } from "@musecat/functionkit"`.
-- **Subpath imports are only allowed when:** the export is not in the barrel (`useCheckInvisible`, `SwitchCase`, `ScrolltoTop`) or tree-shaking is absolutely required.
+- **Subpath imports are only allowed when:** tree-shaking is absolutely required.
 - **Type imports also go through the barrel:** `import type { AppLocale, DateInput } from "@musecat/functionkit"`.
 - **No reimplementation:** If FunctionKit already provides a feature, reuse it. Never write a duplicate.
 
@@ -20,11 +20,7 @@ SSR-safe functions can be used freely in Server Components, RSC, and Client Comp
 
 ## Barrel Export Mapping
 
-The barrel (`index.ts`) exports 63 named exports. **Items NOT in the barrel (require subpath imports):**
-- `SwitchCase` — component subpath
-- `ScrolltoTop` — component subpath
-- `useCheckInvisible` — `@musecat/functionkit/hooks/useCheckInvisible`
-- `useCheckScroll` — `@musecat/functionkit/hooks/useCheckScroll`
+The barrel (`index.ts`) exports every public FunctionKit API. Use a subpath only when a consumer has a demonstrated tree-shaking requirement.
 
 When adding new features, register them in the barrel.
 
@@ -45,8 +41,8 @@ When adding new features, register them in the barrel.
 | Keyboard avoidance (mobile) | `useAvoidKeyboard` |
 | Viewport height | `useViewportHeight` |
 | Media query matching | `useViewportMatch` |
-| Scroll position detection | `useCheckScroll` (subpath) |
-| Element visibility detection | `useCheckInvisible` (subpath) |
+| Scroll position detection | `useCheckScroll` |
+| Element visibility detection | `useCheckInvisible` |
 | Toggle state | `useToggleState` |
 | Hydration guard | `useHasMounted` |
 | Stable callback reference | `usePreservedCallback` |
@@ -121,7 +117,7 @@ When a test fails, do not blindly patch it to turn green. Reason about intent:
 | Hooks | `.agents/references/hooks/usePreservedCallback.md`, `usePreservedReference.md`, `useRefEffect.md`, `useDebounce.md`, `useDebouncedCallback.md`, `useInterval.md`, `useTimeout.md`, `useKeyboardListNavigation.md`, `useLongPress.md`, `useDoubleClick.md`, `useIntersectionObserver.md`, `useCheckInvisible.md`, `useCheckScroll.md`, `useViewportHeight.md`, `useViewportMatch.md`, `useAvoidKeyboard.md`, `useToggleState.md`, `useHasMounted.md`, `useGeolocation.md`, `useKeyboardHeight.md`, `useClientDateTime.md`, `useRelativeDateTime.md` |
 | Cookie | `.agents/references/cookie/cookie.md` |
 | DateTime | `.agents/references/datetime/dateTime.shared.md`, `dateTime.client.md`, `dateTime.server.md` |
-| Utils | `.agents/references/utils/buildContext.md`, `mergeRefs.md`, `floatingMotion.md`, `browserStorage.md`, `getDeviceInfo.md`, `clipboardShare.md`, `isEditableKeyboardTarget.md`, `seen.md`, `subscribeKeyboardHeight.md` |
+| Utils | `.agents/references/utils/buildContext.md`, `mergeRefs.md`, `floatingMotion.md`, `browserStorage.md`, `geoDistance.md`, `imageNormalization.md`, `url.md`, `getDeviceInfo.md`, `clipboardShare.md`, `isEditableKeyboardTarget.md`, `seen.md`, `subscribeKeyboardHeight.md` |
 
 ### usePreservedCallback Trade-off
 

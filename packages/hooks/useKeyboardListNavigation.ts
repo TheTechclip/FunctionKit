@@ -54,6 +54,10 @@ export function useKeyboardListNavigation({ itemCount }: UseKeyboardListNavigati
 
 	const moveActiveItem = useCallback(
 		(key: string) => {
+			if (itemCount === 0) {
+				return false;
+			}
+
 			if (key === "ArrowDown" || key === "ArrowRight") {
 				const nextIndex = activeIndex < 0 ? 0 : (activeIndex + 1) % itemCount;
 				return focusItem(nextIndex);
@@ -129,6 +133,10 @@ export function useKeyboardListNavigation({ itemCount }: UseKeyboardListNavigati
 
 	useEffect(() => {
 		itemRefs.current = itemRefs.current.slice(0, itemCount);
+		setActiveIndex((currentIndex) => {
+			if (itemCount === 0) return -1;
+			return currentIndex >= itemCount ? itemCount - 1 : currentIndex;
+		});
 	}, [itemCount]);
 
 	return {
@@ -137,6 +145,7 @@ export function useKeyboardListNavigation({ itemCount }: UseKeyboardListNavigati
 		setItemRef,
 		clickActiveItem,
 		focusBoundaryItem,
+		moveActiveItem,
 		handleListKeyDown,
 	};
 }

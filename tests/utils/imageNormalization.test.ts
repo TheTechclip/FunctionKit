@@ -6,6 +6,7 @@ import {
 	NormalizeUploadImageError,
 	normalizeUploadImage,
 	normalizeUploadImages,
+	revokeObjectUrl,
 } from "@/packages/utils/imageNormalization";
 
 const createFile = (name = "photo.png", type = "image/png") => new File(["image"], name, { type });
@@ -16,6 +17,16 @@ afterEach(() => {
 });
 
 describe("image normalization helpers", () => {
+	test("releases preview URLs only when the browser API is available", () => {
+		const revokeObjectURL = vi.fn();
+		vi.stubGlobal("URL", { revokeObjectURL });
+		revokeObjectUrl("blob:preview");
+		revokeObjectUrl("");
+		revokeObjectUrl(null);
+		expect(revokeObjectURL).toHaveBeenCalledOnce();
+		expect(revokeObjectURL).toHaveBeenCalledWith("blob:preview");
+	});
+
 	test("recognizes supported images and creates deterministic safe names", () => {
 		expect(isSupportedUploadImageFile(createFile())).toBe(true);
 		expect(isSupportedUploadImageFile(createFile("PHOTO.HEIC", ""))).toBe(true);

@@ -31,6 +31,6 @@ export default function Page() {
 }
 ```
 
-## Note
+## Import and SSR boundary
 
-Not exported from the barrel. Import via component subpath. Client-only (`"use client"`).
+Exported from the root barrel. Client-only (`"use client"`): render it only from a Client Component.

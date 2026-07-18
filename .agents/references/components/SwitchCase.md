@@ -42,6 +42,6 @@ function StatusBadge({ status }: { status: "loading" | "success" | "error" }) {
 }
 ```
 
-## Note
+## Import and SSR boundary
 
-Not exported from the barrel. Import via component subpath.
+Exported from the root barrel. It is SSR-safe and can be used in Server Components, RSC, and Client Components.

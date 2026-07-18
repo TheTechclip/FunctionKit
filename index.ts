@@ -1,3 +1,5 @@
+export { ScrolltoTop } from "./packages/components/ScrolltoTop";
+export { SwitchCase } from "./packages/components/SwitchCase";
 export {
 	getViewportPortalRoot,
 	ViewportPortal,
@@ -45,6 +47,8 @@ export {
 	toUtcMidnight,
 } from "./packages/datetime/dateTime.shared";
 export { useAvoidKeyboard } from "./packages/hooks/useAvoidKeyboard";
+export { useCheckInvisible } from "./packages/hooks/useCheckInvisible";
+export { useCheckScroll } from "./packages/hooks/useCheckScroll";
 export { useClientDateTime } from "./packages/hooks/useClientDateTime";
 export { useDebounce } from "./packages/hooks/useDebounce";
 export { useDebouncedCallback } from "./packages/hooks/useDebouncedCallback";
@@ -114,6 +118,7 @@ export {
 	NormalizeUploadImageError,
 	normalizeUploadImage,
 	normalizeUploadImages,
+	revokeObjectUrl,
 	SUPPORTED_UPLOAD_IMAGE_ACCEPT,
 	SUPPORTED_UPLOAD_IMAGE_EXTENSIONS,
 	SUPPORTED_UPLOAD_IMAGE_MIME_TYPES,

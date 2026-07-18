@@ -19,7 +19,9 @@ Returns `{ isScrolled: boolean }` — `isScrolled` is `true` when `window.scroll
 ## Example Code
 
 ```tsx
-import { useCheckScroll } from "@musecat/functionkit/hooks/useCheckScroll";
+"use client";
+
+import { useCheckScroll } from "@musecat/functionkit";
 
 function StickyHeader() {
   const { isScrolled } = useCheckScroll();
@@ -31,6 +33,6 @@ function StickyHeader() {
 }
 ```
 
-## Note
+## Import and SSR boundary
 
-Not exported from the barrel. Import via subpath only: `@musecat/functionkit/hooks/useCheckScroll`.
+Exported from the root barrel. Client-only (`"use client"`): call it only from a Client Component.
