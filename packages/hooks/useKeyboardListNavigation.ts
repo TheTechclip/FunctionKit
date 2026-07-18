@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { isEditableKeyboardTarget } from "../utils/keyboardTarget";
+import { isEditableKeyboardTarget } from "../utils/isEditableKeyboardTarget";
 
 const FIRST_ITEM_KEYS = new Set(["ArrowDown", "ArrowRight", "Home"]);
 const LAST_ITEM_KEYS = new Set(["ArrowUp", "ArrowLeft", "End"]);

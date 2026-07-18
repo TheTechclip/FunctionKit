@@ -1,17 +1,5 @@
 import { describe, expect, test, vi } from "vitest";
 import {
-	formatClientDate,
-	formatClientDateTime,
-	formatClientRelative,
-	formatClientTime,
-} from "@/packages/datetime/dateTime.client";
-import {
-	formatServerDate,
-	formatServerDateTime,
-	formatServerRelative,
-	formatServerTime,
-} from "@/packages/datetime/dateTime.server";
-import {
 	addUtcDays,
 	format24HourTime,
 	formatDotDate,
@@ -27,7 +15,19 @@ import {
 	toDate,
 	toIntlLocale,
 	toUtcMidnight,
-} from "@/packages/datetime/dateTime.shared";
+} from "@/packages/datetime/dateTime";
+import {
+	formatClientDate,
+	formatClientDateTime,
+	formatClientRelative,
+	formatClientTime,
+} from "@/packages/datetime/dateTime.client";
+import {
+	formatServerDate,
+	formatServerDateTime,
+	formatServerRelative,
+	formatServerTime,
+} from "@/packages/datetime/dateTime.server";
 
 describe("datetime module", () => {
 	describe("shared", () => {

@@ -1,7 +1,12 @@
 import { describe, expect, test } from "vitest";
-import { isEditableKeyboardTarget } from "@/packages/utils/keyboardTarget";
+import { isEditableKeyboardTarget } from "@/packages/utils/isEditableKeyboardTarget";
 
 describe("isEditableKeyboardTarget", () => {
+	test("returns false for null and non-elements", () => {
+		expect(isEditableKeyboardTarget(null)).toBe(false);
+		expect(isEditableKeyboardTarget(new EventTarget())).toBe(false);
+	});
+
 	test("returns true for contentEditable", () => {
 		const el = document.createElement("div");
 		Object.defineProperty(el, "isContentEditable", { value: true });

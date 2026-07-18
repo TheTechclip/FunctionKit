@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { DateInput, DatePreset } from "../datetime/dateTime";
+import { toDate } from "../datetime/dateTime";
 import { formatClientRelative } from "../datetime/dateTime.client";
-import type { DateInput, DatePreset } from "../datetime/dateTime.shared";
-import { toDate } from "../datetime/dateTime.shared";
 
 type UseRelativeDateTimeOptions = {
 	locale?: string;

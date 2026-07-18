@@ -1,6 +1,10 @@
 "use client";
 
-export function isEditableKeyboardTarget(target: HTMLElement) {
+export function isEditableKeyboardTarget(target: EventTarget | null): boolean {
+	if (!(target instanceof HTMLElement)) {
+		return false;
+	}
+
 	return (
 		target.isContentEditable ||
 		target.tagName === "TEXTAREA" ||

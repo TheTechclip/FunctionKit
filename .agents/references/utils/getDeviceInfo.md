@@ -1,4 +1,4 @@
-# getDeviceInfo (checkDevice)
+# getDeviceInfo
 
 ## Purpose
 
@@ -20,7 +20,7 @@ interface DeviceInfo {
   isMacSafari: boolean;
   isSamsungBrowser: boolean;
   isTouchDevice: boolean;
-  browser: string | null;
+  browser: string;
 }
 
 function getDeviceInfo(): DeviceInfo;

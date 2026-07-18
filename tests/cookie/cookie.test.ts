@@ -4,8 +4,8 @@ import {
 	clearClientCookie,
 	getClientCookie,
 	setClientCookie,
-} from "@/packages/cookie/cookie.shared";
-import { parseClientCookieNames } from "@/packages/cookie/cookieNames.shared";
+} from "@/packages/cookie/cookie.client";
+import { parseClientCookieNames } from "@/packages/cookie/parseClientCookieNames";
 
 describe("cookie module", () => {
 	beforeEach(() => {

@@ -1,4 +1,4 @@
-# dateTime.shared
+# dateTime
 
 ## Purpose
 
@@ -17,10 +17,10 @@ type TimePreset = "ko" | "12h" | "24h-minute" | "24h-second";
 
 ```ts
 // "ko" → "kr", "ja" → "jp", anything else → "en"
-function normalizeAppLocale(locale: string): AppLocale;
+function normalizeAppLocale(locale?: string): AppLocale;
 
 // "kr" → "ko-KR", "jp" → "ja-JP", "en" → "en-US"
-function toIntlLocale(locale: AppLocale): string;
+function toIntlLocale(locale?: string): string;
 ```
 
 ## UTC Date Utilities
@@ -28,7 +28,7 @@ function toIntlLocale(locale: AppLocale): string;
 ```ts
 function toDate(input: DateInput): Date | null;                        // NaN-safe Date conversion
 function toUtcMidnight(date: Date): Date;                              // UTC midnight of the given date
-function parseUtcDateInput(input: string): Date | null;                // "YYYY-MM-DD" → UTC Date
+function parseUtcDateInput(input?: DateInput | null, fallback?: DateInput): Date | null;
 function formatUtcDateKey(date: Date): string;                         // UTC Date → "YYYY-MM-DD"
 function getUtcWeekdayIndex(date: Date): number;                       // 0=Sunday
 function addUtcDays(date: Date, days: number): Date;                   // Add days in UTC
@@ -38,29 +38,29 @@ function addUtcDays(date: Date, days: number): Date;                   // Add da
 
 ```ts
 // Long date: "2026년 7월 16일" / "July 16, 2026" / "2026年7月16日"
-function formatLongDate(date: DateInput, locale: AppLocale): string;
+function formatLongDate(date: Date, locale?: string, timeZone?: string): string;
 
 // Dot date: "2026. 7. 16."
-function formatDotDate(date: DateInput, locale: AppLocale): string;
+function formatDotDate(date: Date, timeZone?: string): string;
 
 // 24-hour time: "14:30" or "14:30:00"
-function format24HourTime(date: DateInput, options?: { withSeconds?: boolean }): string;
+function format24HourTime(date: Date, options?: { includeSeconds?: boolean; timeZone?: string }): string;
 
 // Korean time: "오후 2시 30분"
-function formatKoreanTime(date: DateInput): string;
+function formatKoreanTime(date: Date, timeZone?: string): string;
 
 // 12-hour with locale: "오후 2:30" / "2:30 PM" / "午後 2:30"
-function formatTwelveHourTime(date: DateInput, locale: AppLocale): string;
+function formatTwelveHourTime(date: Date, locale?: string, timeZone?: string): string;
 ```
 
 ## Relative / Remaining Time
 
 ```ts
 // Relative: { text: "3분 전", isRelative: true }
-function formatRelativeText(diffMs: number, locale: AppLocale): { text: string; isRelative: boolean };
+function formatRelativeText(diffMs: number, locale?: string): { text: string; isRelative: boolean };
 
 // Remaining: "2일 3시간 남음" / "2 days 3 hours left" / "あと2日3時間"
-function formatRemainingText(diffMs: number, locale: AppLocale): string;
+function formatRemainingText(diffMs: number, locale?: string, options?: { includeSuffix?: boolean }): string;
 ```
 
 ## Example Code

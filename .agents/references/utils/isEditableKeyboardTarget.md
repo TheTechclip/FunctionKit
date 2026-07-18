@@ -1,4 +1,4 @@
-# isEditableKeyboardTarget (keyboardTarget)
+# isEditableKeyboardTarget
 
 ## Purpose
 

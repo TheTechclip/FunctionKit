@@ -37,8 +37,7 @@
 	"main": "./index.ts",
 	"types": "./index.ts",
 	"exports": {
-		".": "./index.ts",
-		"./*": "./*"
+		".": "./index.ts"
 	},
 	"scripts": {
 		"lint": "biome check",

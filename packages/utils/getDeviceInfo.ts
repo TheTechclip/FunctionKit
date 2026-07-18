@@ -56,8 +56,6 @@ export function getDeviceInfo(): DeviceInfo {
 		browser = "firefox";
 	} else if (/Edge/i.test(ua)) {
 		browser = "edge";
-	} else {
-		browser = "unknown";
 	}
 
 	return {

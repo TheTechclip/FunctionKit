@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, test } from "vitest";
-import { getDeviceInfo } from "@/packages/utils/checkDevice";
+import { getDeviceInfo } from "@/packages/utils/getDeviceInfo";
 
 describe("getDeviceInfo", () => {
 	const originalUserAgent = navigator.userAgent;

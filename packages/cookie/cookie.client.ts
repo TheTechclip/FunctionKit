@@ -1,5 +1,7 @@
 "use client";
 
+import { parseClientCookieNames } from "./parseClientCookieNames";
+
 const EXPIRED_COOKIE_DATE = "Thu, 01 Jan 1970 00:00:00 GMT";
 
 type CookieStoreLike = {
@@ -43,10 +45,6 @@ function parseClientCookie(cookieString: string): Record<string, string> {
 		return acc;
 	}, {});
 }
-
-import { parseClientCookieNames } from "./cookieNames.shared";
-
-export { parseClientCookieNames };
 
 export function getClientCookie(name: string): string | undefined {
 	if (typeof document === "undefined") {

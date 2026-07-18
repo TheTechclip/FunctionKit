@@ -9,26 +9,14 @@ export {
 	clearClientCookie,
 	getClientCookie,
 	setClientCookie,
-} from "./packages/cookie/cookie.shared";
-export { parseClientCookieNames } from "./packages/cookie/cookieNames.shared";
-export {
-	formatClientDate,
-	formatClientDateTime,
-	formatClientRelative,
-	formatClientTime,
-} from "./packages/datetime/dateTime.client";
-export {
-	formatServerDate,
-	formatServerDateTime,
-	formatServerRelative,
-	formatServerTime,
-} from "./packages/datetime/dateTime.server";
+} from "./packages/cookie/cookie.client";
+export { parseClientCookieNames } from "./packages/cookie/parseClientCookieNames";
 export type {
 	AppLocale,
 	DateInput,
 	DatePreset,
 	TimePreset,
-} from "./packages/datetime/dateTime.shared";
+} from "./packages/datetime/dateTime";
 export {
 	addUtcDays,
 	format24HourTime,
@@ -45,7 +33,19 @@ export {
 	toDate,
 	toIntlLocale,
 	toUtcMidnight,
-} from "./packages/datetime/dateTime.shared";
+} from "./packages/datetime/dateTime";
+export {
+	formatClientDate,
+	formatClientDateTime,
+	formatClientRelative,
+	formatClientTime,
+} from "./packages/datetime/dateTime.client";
+export {
+	formatServerDate,
+	formatServerDateTime,
+	formatServerRelative,
+	formatServerTime,
+} from "./packages/datetime/dateTime.server";
 export { useAvoidKeyboard } from "./packages/hooks/useAvoidKeyboard";
 export { useCheckInvisible } from "./packages/hooks/useCheckInvisible";
 export { useCheckScroll } from "./packages/hooks/useCheckScroll";
@@ -77,8 +77,6 @@ export {
 	updateSessionStorage,
 } from "./packages/utils/browserStorage";
 export { buildContext } from "./packages/utils/buildContext";
-export type { DeviceInfo } from "./packages/utils/checkDevice";
-export { getDeviceInfo } from "./packages/utils/checkDevice";
 export {
 	NavigatorClipboard,
 	NavigatorShare,
@@ -103,6 +101,8 @@ export {
 } from "./packages/utils/floatingMotion";
 export type { GeoCoordinates } from "./packages/utils/geoDistance";
 export { getDistanceKilometers, getDistanceMeters } from "./packages/utils/geoDistance";
+export type { DeviceInfo } from "./packages/utils/getDeviceInfo";
+export { getDeviceInfo } from "./packages/utils/getDeviceInfo";
 export type {
 	NormalizedUploadImage,
 	NormalizeUploadImageErrorCode,
@@ -129,7 +129,7 @@ export {
 	formatRegionDisplayName,
 	formatRegionFlagEmoji,
 } from "./packages/utils/intlDisplay";
-export { isEditableKeyboardTarget } from "./packages/utils/keyboardTarget";
+export { isEditableKeyboardTarget } from "./packages/utils/isEditableKeyboardTarget";
 export { mergeRefs } from "./packages/utils/mergeRefs";
 export {
 	buildSeenValue,

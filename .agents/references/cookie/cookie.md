@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Client-side cookie read/write/delete utilities. All functions except `parseClientCookieNames` access `document.cookie` and are client-only.
+`cookie.client.ts` owns client-side cookie read/write/delete utilities. `parseClientCookieNames.ts` is SSR-safe and remains separate so server code never imports a client module.
 
 ## Usage Logic
 

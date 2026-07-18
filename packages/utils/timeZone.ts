@@ -1,4 +1,4 @@
-import { type AppLocale, normalizeAppLocale, toIntlLocale } from "../datetime/dateTime.shared";
+import { type AppLocale, normalizeAppLocale, toIntlLocale } from "../datetime/dateTime";
 
 export type TimeZoneCityNames = Partial<Record<string, Partial<Record<AppLocale, string>>>>;
 

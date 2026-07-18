@@ -1,4 +1,4 @@
-import { normalizeAppLocale, toIntlLocale } from "../datetime/dateTime.shared";
+import { normalizeAppLocale, toIntlLocale } from "../datetime/dateTime";
 
 const REGIONAL_INDICATOR_BASE = 0x1f1e6;
 const ASCII_UPPERCASE_A = 65;
