@@ -2,8 +2,9 @@
 
 import { createContext, type ReactNode, useContext } from "react";
 
-export function buildContext<T>(defaultValue: T) {
-	const Ctx = createContext<T>(defaultValue);
+export function buildContext<T>(displayName?: string) {
+	const Ctx = createContext<T | undefined>(undefined);
+	Ctx.displayName = displayName;
 
 	function Provider({ value, children }: { value: T; children: ReactNode }) {
 		return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
@@ -11,8 +12,11 @@ export function buildContext<T>(defaultValue: T) {
 
 	function useValue() {
 		const ctx = useContext(Ctx);
+		if (ctx === undefined) {
+			throw new Error(`${displayName ?? "Context"} must be used within its Provider.`);
+		}
 		return ctx;
 	}
 
-	return [Provider, useValue] as const;
+	return [useValue, Provider] as const;
 }

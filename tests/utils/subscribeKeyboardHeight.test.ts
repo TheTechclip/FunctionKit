@@ -81,9 +81,9 @@ describe("subscribeKeyboardHeight", () => {
 		expect(callback).toHaveBeenCalledTimes(1);
 
 		// Trigger resize with the same keyboard height
-		const handler = visualViewport.addEventListener.mock.calls.find(
-			([event]: [string]) => event === "resize",
-		)?.[1] as () => void;
+		const handler = (
+			visualViewport.addEventListener.mock.calls as Array<[string, () => void]>
+		).find(([event]) => event === "resize")?.[1] as () => void;
 		if (handler) handler();
 
 		// Same diff (innerHeight 800 - visualViewport.height 600 = 200), so notify(200) again
@@ -104,9 +104,9 @@ describe("subscribeKeyboardHeight", () => {
 			configurable: true,
 		});
 		// Trigger resize handler
-		const resizeHandler = visualViewport.addEventListener.mock.calls.find(
-			([event]: [string]) => event === "resize",
-		)?.[1] as () => void;
+		const resizeHandler = (
+			visualViewport.addEventListener.mock.calls as Array<[string, () => void]>
+		).find(([event]) => event === "resize")?.[1] as () => void;
 		resizeHandler();
 		// diff = 600 - 600 = 0 → notify(0) → 0 !== 200 → callback(0)
 		expect(callback).toHaveBeenCalledWith(0);
@@ -124,15 +124,19 @@ describe("subscribeKeyboardHeight", () => {
 
 		// Simulate two rapid resize events
 		visualViewport.height = 700;
-		visualViewport.addEventListener.mock.calls.forEach(([event, handler]: [string, () => void]) => {
-			if (event === "resize") handler();
-		});
+		(visualViewport.addEventListener.mock.calls as Array<[string, () => void]>).forEach(
+			([event, handler]) => {
+				if (event === "resize") handler();
+			},
+		);
 
 		// Change height again and fire again
 		visualViewport.height = 650;
-		visualViewport.addEventListener.mock.calls.forEach(([event, handler]: [string, () => void]) => {
-			if (event === "resize") handler();
-		});
+		(visualViewport.addEventListener.mock.calls as Array<[string, () => void]>).forEach(
+			([event, handler]) => {
+				if (event === "resize") handler();
+			},
+		);
 
 		// Only the last height should be reported after throttle
 		vi.advanceTimersByTime(50);

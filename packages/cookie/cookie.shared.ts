@@ -3,7 +3,7 @@
 const EXPIRED_COOKIE_DATE = "Thu, 01 Jan 1970 00:00:00 GMT";
 
 type CookieStoreLike = {
-	delete: (name: string) => Promise<void>;
+	delete: (name: string) => void | Promise<void>;
 };
 
 type DocumentCookieRef = {
@@ -28,15 +28,20 @@ function findClientCookie(name: string, documentRef: DocumentCookieRef): string 
 }
 
 function parseClientCookie(cookieString: string): Record<string, string> {
-	return cookieString
-		.split(";")
-		.map((pair) => pair.trim().split("=") as [string, string])
-		.reduce<Record<string, string>>((acc, [key, value]) => {
-			if (key) {
+	return cookieString.split(";").reduce<Record<string, string>>((acc, pair) => {
+		const trimmed = pair.trim();
+		const separatorIndex = trimmed.indexOf("=");
+		const key = separatorIndex === -1 ? trimmed : trimmed.slice(0, separatorIndex);
+		const value = separatorIndex === -1 ? "" : trimmed.slice(separatorIndex + 1);
+		if (key) {
+			try {
+				acc[key] = decodeURIComponent(value);
+			} catch {
 				acc[key] = value;
 			}
-			return acc;
-		}, {});
+		}
+		return acc;
+	}, {});
 }
 
 import { parseClientCookieNames } from "./cookieNames.shared";
@@ -74,12 +79,17 @@ export function setClientCookie(
 }
 
 export function clearClientCookie(name: string, options: ClearClientCookieOptions = {}): void {
-	const { hostname = window.location.hostname, path = "/", documentRef = document } = options;
+	if (typeof document === "undefined" || typeof window === "undefined") return;
 
-	documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path}; domain=${hostname};`;
+	const { hostname, path = "/", documentRef = document } = options;
+	const domain = hostname ? `; domain=${hostname}` : "";
+
+	documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path}${domain};`;
 }
 
 export function clearAllClientCookies(options: ClearAllClientCookiesOptions = {}): string[] {
+	if (typeof document === "undefined" || typeof window === "undefined") return [];
+
 	const { documentRef = document, cookieStore, includeRoot = false, cookieString } = options;
 
 	const entries = cookieString
@@ -94,7 +104,7 @@ export function clearAllClientCookies(options: ClearAllClientCookiesOptions = {}
 
 	if (cookieStore) {
 		for (const name of entries) {
-			cookieStore.delete(name);
+			void Promise.resolve(cookieStore.delete(name)).catch(() => {});
 		}
 		return entries;
 	}
@@ -109,7 +119,8 @@ export function clearAllClientCookies(options: ClearAllClientCookiesOptions = {}
 
 	for (const name of entries) {
 		for (const path of paths) {
-			for (let i = 0; i < hostnameParts.length; i++) {
+			documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path};`;
+			for (let i = 0; i < hostnameParts.length - 1; i++) {
 				const domain = hostnameParts.slice(i).join(".");
 				documentRef.cookie = `${name}=; expires=${EXPIRED_COOKIE_DATE}; path=${path}; domain=${domain};`;
 			}

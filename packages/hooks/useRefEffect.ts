@@ -7,7 +7,8 @@ import { usePreservedCallback } from "./usePreservedCallback";
 export type CleanupCallback = () => void;
 
 export function useRefEffect<RefElement extends HTMLElement = HTMLElement>(
-	callback: (element: RefElement) => CleanupCallback | undefined,
+	// biome-ignore lint/suspicious/noConfusingVoidType: callbacks may intentionally omit cleanup.
+	callback: (element: RefElement) => CleanupCallback | void,
 	deps: DependencyList,
 ): (element: RefElement | null) => void {
 	const preservedCallback = usePreservedCallback(callback);

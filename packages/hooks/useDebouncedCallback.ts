@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef } from "react";
 
-import { debounce } from "./useDebounce";
+import { debounce } from "../utils/debounce";
 import { usePreservedCallback } from "./usePreservedCallback";
 
 type DebounceOptions = {
@@ -45,6 +45,8 @@ export function useDebouncedCallback({
 	return useCallback(
 		(nextValue: boolean) => {
 			if (nextValue === ref.current.value) {
+				ref.current.clearPreviousDebounce();
+				ref.current.clearPreviousDebounce = () => {};
 				return;
 			}
 

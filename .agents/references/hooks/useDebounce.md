@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Delays the propagation of a rapidly changing value. Includes both a raw utility function (`debounce`) for non-React use and a React hook (`useDebounce`) that auto-cleans up on unmount.
+Delays callback invocation. Includes an SSR-safe raw utility (`debounce`) and a React hook (`useDebounce`) that cancels work on unmount.
 
 ## Usage Logic
 
 **`debounce`**: A pure function that wraps any callback with configurable leading/trailing edge execution. Returns the debounced function with a `.cancel()` method.
 
-**`useDebounce`**: React hook that returns the debounced value. Internally uses `useState` + `useEffect` with the raw `debounce` utility. Automatically cancels pending timers on unmount.
+**`useDebounce`**: React hook that returns a stable debounced callback. It calls the latest callback after the configured delay and cancels pending timers on unmount.
 
 ## Type Signatures
 
@@ -21,11 +21,11 @@ function debounce<T extends (...args: any[]) => any>(
 ): T & { cancel: () => void };
 
 // React hook — client-only
-function useDebounce<T>(
-  value: T,
-  delay: number,
+function useDebounce<F extends (...args: never[]) => unknown>(
+  callback: F,
+  wait: number,
   options?: { leading?: boolean; trailing?: boolean }
-): T;
+): F & { cancel(): void };
 ```
 
 ## Example Code
@@ -34,13 +34,7 @@ function useDebounce<T>(
 import { useDebounce } from "@musecat/functionkit";
 
 function SearchInput() {
-  const [query, setQuery] = useState("");
-  const debouncedQuery = useDebounce(query, 300);
-
-  useEffect(() => {
-    if (debouncedQuery) fetchResults(debouncedQuery);
-  }, [debouncedQuery]);
-
-  return <input onChange={(e) => setQuery(e.target.value)} />;
+  const handleSearch = useDebounce(fetchResults, 300);
+  return <input onChange={(e) => handleSearch(e.target.value)} />;
 }
 ```

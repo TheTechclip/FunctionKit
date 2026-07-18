@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 type SwitchCaseProps<T extends string | number> = {
 	value: T;
-	cases: Partial<Record<T, ReactNode>>;
+	cases: Partial<Record<string | number, ReactNode>>;
 	otherwise?: ReactNode;
 };
 

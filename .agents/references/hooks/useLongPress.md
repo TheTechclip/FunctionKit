@@ -12,14 +12,12 @@ Tracks both mouse and touch events. On `mousedown`/`touchstart`, starts a timer.
 
 ```ts
 function useLongPress(
-  handlers: {
-    onLongPress: (e: MouseEvent | TouchEvent) => void;
-    onClick?: (e: MouseEvent | TouchEvent) => void;
-    onLongPressEnd?: (e: MouseEvent | TouchEvent) => void;
-  },
+  onLongPress: (e: MouseEvent | TouchEvent) => void,
   options?: {
     delay?: number;
-    moveThreshold?: number;
+    moveThreshold?: { x?: number; y?: number };
+    onClick?: (e: MouseEvent | TouchEvent) => void;
+    onLongPressEnd?: (e: MouseEvent | TouchEvent) => void;
   }
 ): {
   onMouseDown: (e: React.MouseEvent) => void;
@@ -28,6 +26,7 @@ function useLongPress(
   onTouchEnd: (e: React.TouchEvent) => void;
   onMouseMove: (e: React.MouseEvent) => void;
   onTouchMove: (e: React.TouchEvent) => void;
+  onTouchCancel: (e: React.TouchEvent) => void;
 };
 ```
 
@@ -37,12 +36,16 @@ function useLongPress(
 import { useLongPress } from "@musecat/functionkit";
 
 function LongPressButton() {
-  const handlers = useLongPress({
-    onLongPress: () => console.log("hold complete"),
-    onClick: () => console.log("tap"),
-    onLongPressEnd: () => console.log("released"),
-  });
+  const handlers = useLongPress(
+    () => console.log("hold complete"),
+    {
+      onClick: () => console.log("tap"),
+      onLongPressEnd: () => console.log("released"),
+    },
+  );
 
   return <button {...handlers}>Press & hold</button>;
 }
 ```
+
+Pending timers are cancelled on unmount, pointer cancellation, and mouse leave.

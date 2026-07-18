@@ -24,6 +24,12 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 ```
 
+In App Router, import browser APIs and hooks from the barrel inside a Client Component. Pure utilities, date helpers, and types can be imported from the same barrel in Server Components.
+
+```tsx
+import { formatServerDate, useDebounce, ViewportPortal } from "@musecat/functionkit";
+```
+
 ## Usage
 
 ```tsx
