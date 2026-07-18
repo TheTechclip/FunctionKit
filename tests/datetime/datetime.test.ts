@@ -156,7 +156,17 @@ describe("datetime module", () => {
 				expect(format24HourTime(testDate, { includeSeconds: true, timeZone: "UTC" })).toBe(
 					"15:30:45",
 				);
-				expect(format24HourTime(testDate)).toBe("15:30");
+				expect(format24HourTime(testDate)).toBe(
+					new Intl.DateTimeFormat("en-US", {
+						hour: "2-digit",
+						minute: "2-digit",
+						hourCycle: "h23",
+					})
+						.formatToParts(testDate)
+						.filter((part) => part.type === "hour" || part.type === "minute")
+						.map((part) => part.value)
+						.join(":"),
+				);
 			});
 
 			test("formatKoreanTime", () => {

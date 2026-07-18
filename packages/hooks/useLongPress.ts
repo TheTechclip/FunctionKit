@@ -1,6 +1,6 @@
 "use client";
 
-import { type MouseEvent, type TouchEvent, useCallback, useRef } from "react";
+import { type MouseEvent, type TouchEvent, useCallback, useEffect, useRef } from "react";
 
 export type UseLongPressOptions<E extends HTMLElement> = {
 	delay?: number;
@@ -26,8 +26,6 @@ export function useLongPress<E extends HTMLElement = HTMLElement>(
 	savedOnLongPress.current = onLongPress;
 	savedOnClick.current = onClick;
 	savedOnLongPressEnd.current = onLongPressEnd;
-
-	const hasThreshold = moveThreshold?.x !== undefined || moveThreshold?.y !== undefined;
 
 	const getClientPosition = useCallback((event: MouseEvent<E> | TouchEvent<E>) => {
 		if ("touches" in event.nativeEvent) {
@@ -61,6 +59,8 @@ export function useLongPress<E extends HTMLElement = HTMLElement>(
 		}
 	}, []);
 
+	useEffect(() => cancelLongPress, [cancelLongPress]);
+
 	const handlePressStart = useCallback(
 		(event: MouseEvent<E> | TouchEvent<E>) => {
 			cancelLongPress();
@@ -69,6 +69,7 @@ export function useLongPress<E extends HTMLElement = HTMLElement>(
 
 			timeoutRef.current = window.setTimeout(() => {
 				isLongPressActiveRef.current = true;
+				timeoutRef.current = null;
 				savedOnLongPress.current(event);
 			}, delay);
 		},
@@ -89,6 +90,14 @@ export function useLongPress<E extends HTMLElement = HTMLElement>(
 		[cancelLongPress],
 	);
 
+	const handlePressCancel = useCallback(
+		(_event?: MouseEvent<E> | TouchEvent<E>) => {
+			cancelLongPress();
+			isLongPressActiveRef.current = false;
+		},
+		[cancelLongPress],
+	);
+
 	const handlePressMove = useCallback(
 		(event: MouseEvent<E> | TouchEvent<E>) => {
 			if (timeoutRef.current !== null && isMovedBeyondThreshold(event)) {
@@ -101,9 +110,11 @@ export function useLongPress<E extends HTMLElement = HTMLElement>(
 	return {
 		onMouseDown: handlePressStart,
 		onMouseUp: handlePressEnd,
-		onMouseLeave: cancelLongPress,
+		onMouseLeave: handlePressCancel,
 		onTouchStart: handlePressStart,
 		onTouchEnd: handlePressEnd,
-		...(hasThreshold ? { onTouchMove: handlePressMove, onMouseMove: handlePressMove } : {}),
+		onTouchCancel: handlePressCancel,
+		onTouchMove: handlePressMove,
+		onMouseMove: handlePressMove,
 	};
 }

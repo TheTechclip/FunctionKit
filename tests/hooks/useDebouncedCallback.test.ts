@@ -60,4 +60,17 @@ describe("useDebouncedCallback", () => {
 		vi.advanceTimersByTime(100);
 		expect(onChange).toHaveBeenCalledTimes(1);
 	});
+
+	test("cancels a pending transition when the input returns to the committed value", () => {
+		const onChange = vi.fn();
+		const { result } = renderHook(() => useDebouncedCallback({ onChange, timeThreshold: 100 }));
+
+		act(() => {
+			result.current(true);
+			result.current(false);
+		});
+		vi.advanceTimersByTime(100);
+
+		expect(onChange).not.toHaveBeenCalled();
+	});
 });

@@ -7,7 +7,7 @@ describe("mergeRefs", () => {
 		const ref2 = { current: null };
 		const ref3 = null;
 
-		const merged = mergeRefs(ref1, ref2, ref3);
+		const merged = mergeRefs<HTMLDivElement>(ref1, ref2, ref3);
 		const element = document.createElement("div");
 
 		merged(element);
@@ -17,13 +17,13 @@ describe("mergeRefs", () => {
 	});
 
 	test("handles all null refs", () => {
-		const merged = mergeRefs(null, undefined, null);
+		const merged = mergeRefs<HTMLDivElement>(null, undefined, null);
 		const element = document.createElement("div");
 		expect(() => merged(element)).not.toThrow();
 	});
 
 	test("handles empty refs array", () => {
-		const merged = mergeRefs();
+		const merged = mergeRefs<HTMLDivElement>();
 		const element = document.createElement("div");
 		expect(() => merged(element)).not.toThrow();
 	});
@@ -31,7 +31,7 @@ describe("mergeRefs", () => {
 	test("handles all callback refs", () => {
 		const ref1 = vi.fn();
 		const ref2 = vi.fn();
-		const merged = mergeRefs(ref1, ref2);
+		const merged = mergeRefs<HTMLDivElement>(ref1, ref2);
 		const element = document.createElement("div");
 		merged(element);
 		expect(ref1).toHaveBeenCalledWith(element);
@@ -41,7 +41,7 @@ describe("mergeRefs", () => {
 	test("handles all object refs", () => {
 		const ref1 = { current: null };
 		const ref2 = { current: null };
-		const merged = mergeRefs(ref1, ref2);
+		const merged = mergeRefs<HTMLDivElement>(ref1, ref2);
 		const element = document.createElement("div");
 		merged(element);
 		expect(ref1.current).toBe(element);

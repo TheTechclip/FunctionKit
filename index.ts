@@ -85,6 +85,8 @@ export type {
 	NavigatorShareProps,
 	NavigatorShareResult,
 } from "./packages/utils/clipboardShare.types";
+export type { DebouncedFunction, DebounceEdge } from "./packages/utils/debounce";
+export { debounce } from "./packages/utils/debounce";
 export type {
 	FloatingMotionMode,
 	FloatingMotionPreset,
@@ -95,6 +97,33 @@ export {
 	getFloatingMotionPreset,
 	getFloatingTransformOrigin,
 } from "./packages/utils/floatingMotion";
+export type { GeoCoordinates } from "./packages/utils/geoDistance";
+export { getDistanceKilometers, getDistanceMeters } from "./packages/utils/geoDistance";
+export type {
+	NormalizedUploadImage,
+	NormalizeUploadImageErrorCode,
+	NormalizeUploadImageOptions,
+	NormalizeUploadImageWarning,
+} from "./packages/utils/imageNormalization";
+export {
+	getNormalizedJpegFilename,
+	isGifUploadImage,
+	isSupportedUploadImageFile,
+	NORMALIZED_IMAGE_MAX_BYTES,
+	NORMALIZED_IMAGE_MAX_DIMENSION,
+	NormalizeUploadImageError,
+	normalizeUploadImage,
+	normalizeUploadImages,
+	SUPPORTED_UPLOAD_IMAGE_ACCEPT,
+	SUPPORTED_UPLOAD_IMAGE_EXTENSIONS,
+	SUPPORTED_UPLOAD_IMAGE_MIME_TYPES,
+} from "./packages/utils/imageNormalization";
+export {
+	formatCurrencyDisplayName,
+	formatRegionDisplayLabel,
+	formatRegionDisplayName,
+	formatRegionFlagEmoji,
+} from "./packages/utils/intlDisplay";
 export { isEditableKeyboardTarget } from "./packages/utils/keyboardTarget";
 export { mergeRefs } from "./packages/utils/mergeRefs";
 export {
@@ -104,3 +133,16 @@ export {
 	SEEN_STORAGE_KEY,
 } from "./packages/utils/seen";
 export { subscribeKeyboardHeight } from "./packages/utils/subscribeKeyboardHeight";
+export type { TimeZoneCityNames } from "./packages/utils/timeZone";
+export {
+	formatTimeZoneCityName,
+	formatTimeZoneDisplayLabel,
+	formatTimeZoneDisplayName,
+} from "./packages/utils/timeZone";
+export {
+	hostMatchesAny,
+	isHttpUrl,
+	normalizeHostname,
+	toTrimmedString,
+	toURL,
+} from "./packages/utils/url";

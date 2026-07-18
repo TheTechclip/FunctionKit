@@ -6,7 +6,7 @@ A declarative `switch`/`case` component for JSX. Renders the matching `ReactNode
 
 ## Usage Logic
 
-Takes a `value` and a `cases` record. Iterates over the keys of `cases` and returns the first match using `Object.hasOwn`. If no key matches, renders `otherwise` (or `null`).
+Takes a `value` and a `cases` record, then returns the value at that key. The record may contain a broader set of string/number keys than the current value; this makes an explicit fallback type-safe. If no key matches, renders `otherwise` (or `null`).
 
 SSR-safe — pure function with no `"use client"`.
 
@@ -15,7 +15,7 @@ SSR-safe — pure function with no `"use client"`.
 ```ts
 interface SwitchCaseProps<T extends string | number> {
   value: T;
-  cases: Partial<Record<T, ReactNode>>;
+  cases: Partial<Record<string | number, ReactNode>>;
   otherwise?: ReactNode;
 }
 

@@ -68,6 +68,24 @@ describe("cookie module", () => {
 		});
 	});
 
+	test("decodes values and preserves embedded equals signs", () => {
+		// biome-ignore lint/suspicious/noDocumentCookie: test setup
+		document.cookie = "token=part%3Dtwo%3Dthree";
+		expect(getClientCookie("token")).toBe("part=two=three");
+	});
+
+	test("returns the raw value when a cookie contains malformed encoding", () => {
+		// biome-ignore lint/suspicious/noDocumentCookie: test setup
+		document.cookie = "token=%E0%A4%A";
+		expect(getClientCookie("token")).toBe("%E0%A4%A");
+	});
+
+	test("treats a valueless cookie as an empty string", () => {
+		// biome-ignore lint/suspicious/noDocumentCookie: test setup
+		document.cookie = "flag";
+		expect(getClientCookie("flag")).toBe("");
+	});
+
 	describe("setClientCookie", () => {
 		test("handles undefined document in setClientCookie", () => {
 			const origDocument = global.document;
@@ -128,9 +146,7 @@ describe("cookie module", () => {
 			// biome-ignore lint/suspicious/noDocumentCookie: test setup
 			document.cookie = "foo=bar";
 			clearClientCookie("foo");
-			expect(document.cookie).toBe(
-				"foo=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=example.com;",
-			);
+			expect(document.cookie).toBe("foo=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;");
 		});
 
 		test("clears cookie with custom options", () => {
@@ -146,6 +162,21 @@ describe("cookie module", () => {
 		});
 	});
 
+	test("does nothing outside a browser environment", () => {
+		const originalDocument = global.document;
+		const originalWindow = global.window;
+		// @ts-expect-error test SSR guard
+		delete global.document;
+		// @ts-expect-error test SSR guard
+		delete global.window;
+
+		expect(() => clearClientCookie("foo")).not.toThrow();
+		expect(clearAllClientCookies()).toEqual([]);
+
+		global.document = originalDocument;
+		global.window = originalWindow;
+	});
+
 	describe("clearAllClientCookies", () => {
 		test("clears all cookies based on documentRef.cookie", () => {
 			const mockDoc = { cookie: "a=1; b=2" };
@@ -153,7 +184,7 @@ describe("cookie module", () => {
 
 			expect(entries).toEqual(["a", "b"]);
 			expect(mockDoc.cookie).toContain(
-				"b=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/test/path; domain=com;",
+				"b=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/test/path; domain=example.com;",
 			);
 		});
 
@@ -178,7 +209,7 @@ describe("cookie module", () => {
 			// The function iterates and updates document.cookie, so it will contain the last assignment.
 			// With paths ["/", "/test/path"] and domain "example.com"
 			expect(mockDoc.cookie).toContain(
-				"a=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/test/path; domain=com;",
+				"a=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/test/path; domain=example.com;",
 			);
 		});
 
@@ -192,5 +223,14 @@ describe("cookie module", () => {
 			expect(entries).toEqual(["x", "y"]);
 			expect(mockDoc.cookie).toContain("y=;");
 		});
+	});
+
+	test("ignores an asynchronous Cookie Store deletion failure", async () => {
+		const cookieStore = { delete: vi.fn().mockRejectedValue(new Error("unavailable")) };
+
+		expect(clearAllClientCookies({ cookieString: "a=1", cookieStore })).toEqual(["a"]);
+		await Promise.resolve();
+		await Promise.resolve();
+		expect(cookieStore.delete).toHaveBeenCalledWith("a");
 	});
 });

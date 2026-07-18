@@ -6,9 +6,9 @@ Client-side cookie read/write/delete utilities. All functions except `parseClien
 
 ## Usage Logic
 
-Each function wraps native `document.cookie` operations. `setClientCookie` handles expiry via `Max-Age`. `clearClientCookie` and `clearAllClientCookies` set `Max-Age=0` to delete. `clearAllClientCookies` iterates over all domain/path combinations to ensure thorough cleanup.
+Each function wraps native `document.cookie` operations. `setClientCookie` writes an `expires` attribute when `days` is provided. `clearClientCookie` expires a host-only cookie by default, or a domain cookie when `hostname` is supplied. `clearAllClientCookies` tries host-only and parent-domain variants for the current path (and optionally `/`).
 
-All mutation functions accept an optional `documentRef` to inject a mock document for testing. `setClientCookie` also accepts an optional `CookieStoreLike` via options.
+All mutation functions accept an optional `documentRef` to inject a mock document for testing. `clearAllClientCookies` accepts an optional `CookieStoreLike`; asynchronous deletion failures are ignored because this API returns the discovered names synchronously.
 
 ## Type Signatures
 

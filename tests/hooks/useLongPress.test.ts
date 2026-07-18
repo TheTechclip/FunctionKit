@@ -211,4 +211,30 @@ describe("useLongPress", () => {
 		});
 		expect(onClick).not.toHaveBeenCalled();
 	});
+
+	test("cancels a pending timer when the hook unmounts", () => {
+		const onLongPress = vi.fn();
+		const { result, unmount } = renderHook(() => useLongPress(onLongPress, { delay: 200 }));
+
+		act(() => {
+			result.current.onMouseDown(createMouseEvent("mousedown"));
+		});
+		unmount();
+		vi.advanceTimersByTime(200);
+
+		expect(onLongPress).not.toHaveBeenCalled();
+	});
+
+	test("cancels a touch gesture when the browser sends touchcancel", () => {
+		const onLongPress = vi.fn();
+		const { result } = renderHook(() => useLongPress(onLongPress, { delay: 200 }));
+
+		act(() => {
+			result.current.onTouchStart(createTouchEvent("touchstart"));
+			result.current.onTouchCancel(createTouchEvent("touchcancel"));
+		});
+		vi.advanceTimersByTime(200);
+
+		expect(onLongPress).not.toHaveBeenCalled();
+	});
 });

@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Eliminates `createContext` + `Provider` + `useContext` boilerplate. Creates a type-safe context pair in a single call: a typed accessor hook and a Provider component with automatic value memoization.
+Eliminates `createContext` + `Provider` + `useContext` boilerplate. Creates a type-safe accessor hook and Provider component in one call.
 
 ## Usage Logic
 
-Creates a React context with the generic type `T`. Returns a tuple `[useCtx, Provider]`. The Provider wraps its `value` in `useMemo` to prevent unnecessary re-renders. If `displayName` is provided, it's assigned to the context for DevTools.
+Creates a React context with the generic type `T`. Returns `[useCtx, Provider]`. If `displayName` is provided, it is assigned for DevTools and included in the error thrown when the hook is called outside its Provider. The Provider intentionally passes `value` through unchanged, so callers control memoization semantics.
 
 ## Type Signature
 
