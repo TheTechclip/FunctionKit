@@ -1,0 +1,55 @@
+name: Publish Web to npm
+
+on:
+  push:
+    tags:
+      - "web-v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-web-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish @musecat/functionkit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Verify tag matches package version
+        shell: bash
+        run: |
+          tag_version="${GITHUB_REF_NAME#web-v}"
+          package_version="$(bun -e 'const p=await Bun.file("package.json").json(); process.stdout.write(p.version)')"
+          test "$tag_version" = "$package_version" || {
+            echo "Tag version $tag_version does not match package.json $package_version" >&2
+            exit 1
+          }
+
+      - name: Validate Web release
+        run: bun run check:web
+
+      - name: Stage public package
+        run: bun ./scripts/release.mjs --profile web --out "$RUNNER_TEMP/functionkit-web-release"
+
+      - name: Publish with npm Trusted Publishing
+        working-directory: ${{ runner.temp }}/functionkit-web-release
+        run: npm publish --access public

@@ -1,0 +1,25 @@
+# FunctionKit
+
+Repository: https://github.com/TheTechclip/FunctionKit
+npm: @musecat/functionkit
+
+FunctionKit is a product-neutral React/Web utility library. The npm package publishes the public Web graph only. `web/musecat/**` is private application code and must never be suggested as a public import.
+
+Primary docs:
+- README.md — English overview
+- README.ko.md — Korean overview
+- docs/en/getting-started.md
+- docs/en/api.md
+- docs/en/runtime.md
+- docs/en/recipes.md
+- docs/en/migration-v2.md
+- docs/en/releases.md
+- docs/ko/ — Korean equivalents
+- publicApi.manifest.json — complete generated public symbol inventory
+- references/ — exact symbol contracts, defaults, runtime constraints, errors, cleanup, and examples
+
+Public imports:
+- @musecat/functionkit
+- @musecat/functionkit/web
+
+Do not recommend physical deep imports such as web/packages/... .

@@ -1,0 +1,16 @@
+{
+	"schemaVersion": 1,
+	"profiles": {
+		"web": {
+			"format": "npm",
+			"name": "@musecat/functionkit",
+			"description": "Product-neutral React and Web utilities with runtime-aware hooks, browser adapters, and universal helpers",
+			"exports": {
+				".": "./web/public.ts",
+				"./web": "./web/public.ts"
+			},
+			"allowedSourceRoots": ["web/packages"],
+			"peerDependencies": ["react", "react-dom"]
+		}
+	}
+}

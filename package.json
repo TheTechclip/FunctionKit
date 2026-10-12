@@ -1,0 +1,86 @@
+{
+	"name": "@musecat/functionkit",
+	"version": "2.0.0",
+	"description": "Product-neutral React and Web utilities with runtime-aware hooks, browser adapters, and universal helpers",
+	"keywords": [
+		"react",
+		"hooks",
+		"typescript",
+		"utility",
+		"frontend"
+	],
+	"license": "MIT",
+	"private": true,
+	"author": "TheTechclip",
+	"files": [
+		"web",
+		"publicApi.manifest.json",
+		"references/",
+		"README.md",
+		"LICENSE"
+	],
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/TheTechclip/FunctionKit.git"
+	},
+	"bugs": {
+		"url": "https://github.com/TheTechclip/FunctionKit/issues"
+	},
+	"homepage": "https://github.com/TheTechclip/FunctionKit#readme",
+	"type": "module",
+	"main": "./web/public.ts",
+	"types": "./web/public.ts",
+	"exports": {
+		".": "./web/public.ts",
+		"./web": "./web/public.ts"
+	},
+	"scripts": {
+		"lint": "biome check",
+		"lint:web": "bun ./scripts/lintPublic.mjs",
+		"format": "prettier --write . && biome format --write",
+		"test": "vitest run",
+		"test:coverage": "bun run test:coverage:public",
+		"test:coverage:public": "FUNCTIONKIT_COVERAGE_TARGET=public vitest run --coverage",
+		"typecheck": "tsc --noEmit",
+		"manifest": "bun ./scripts/publicApi.mjs",
+		"references": "bun ./scripts/publicApi.mjs --check && bun ./scripts/auditReferences.mjs && bun ./scripts/checkDocumentationSnippets.mjs",
+		"release:web": "bun run references && bun ./scripts/release.mjs --profile web",
+		"pack:web": "bun run references && bun ./scripts/release.mjs --profile web --pack",
+		"check:web": "bun run lint:web && bun run typecheck && bun run test:coverage:public && bun run references && bun run smoke:web",
+		"smoke:web": "bun ./scripts/smokeWebRelease.mjs",
+		"check:all": "bun run check:web"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/",
+		"access": "public"
+	},
+	"peerDependencies": {
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.15",
+		"@testing-library/jest-dom": "^7.0.1",
+		"@testing-library/react": "^16.3.3",
+		"@testing-library/user-event": "^14.6.7",
+		"@types/node": "^26.6.4",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
+		"@vitest/coverage-v8": "^5.0.3",
+		"jsdom": "30.0.1",
+		"prettier": "^3.9.9",
+		"react": "19.3.0",
+		"react-dom": "19.3.0",
+		"typescript": "^7.0.2",
+		"vitest": "^5.0.3",
+		"@babel/parser": "^7.28.4"
+	},
+	"trustedDependencies": [
+		"esbuild"
+	],
+	"engines": {
+		"node": ">=20.0.0"
+	},
+	"packageManager": "bun@1.4.2"
+}

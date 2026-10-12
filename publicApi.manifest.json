@@ -1,0 +1,996 @@
+{
+	"schemaVersion": 1,
+	"generatedFrom": ["web/public.ts"],
+	"exports": [
+		{
+			"name": "acquireEscapeDismissalBlock",
+			"importedName": "acquireEscapeDismissalBlock",
+			"kind": "value",
+			"source": "./web/packages/utils/escapeDismissal",
+			"runtime": "Universal",
+			"reference": "references/utils/escapeDismissal.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "addUtcDays",
+			"importedName": "addUtcDays",
+			"kind": "value",
+			"source": "./web/packages/utils/dateInput",
+			"runtime": "Universal",
+			"reference": "references/utils/dateInput.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "buildContext",
+			"importedName": "buildContext",
+			"kind": "value",
+			"source": "./web/packages/utils/buildContext",
+			"runtime": "Client-only",
+			"reference": "references/utils/buildContext.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "clearAllClientCookies",
+			"importedName": "clearAllClientCookies",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/cookie.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/cookie.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "clearClientCookie",
+			"importedName": "clearClientCookie",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/cookie.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/cookie.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "CollectionSelectionBehavior",
+			"importedName": "CollectionSelectionBehavior",
+			"kind": "type",
+			"source": "./web/packages/hooks/useCollectionSelection",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useCollectionSelection.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "CollectionSelectionIntent",
+			"importedName": "CollectionSelectionIntent",
+			"kind": "type",
+			"source": "./web/packages/hooks/useCollectionSelection",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useCollectionSelection.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "CollectionSelectionMode",
+			"importedName": "CollectionSelectionMode",
+			"kind": "type",
+			"source": "./web/packages/hooks/useCollectionSelection",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useCollectionSelection.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "CookieReadStateOptions",
+			"importedName": "CookieReadStateOptions",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/readState.cookie.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/readState.cookie.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "createMemoryHistory",
+			"importedName": "createMemoryHistory",
+			"kind": "value",
+			"source": "./web/packages/utils/memoryHistory",
+			"runtime": "Universal",
+			"reference": "references/utils/memoryHistory.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "DateInput",
+			"importedName": "DateInput",
+			"kind": "type",
+			"source": "./web/packages/utils/dateInput",
+			"runtime": "Universal",
+			"reference": "references/utils/dateInput.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "debounce",
+			"importedName": "debounce",
+			"kind": "value",
+			"source": "./web/packages/utils/debounce",
+			"runtime": "Universal",
+			"reference": "references/utils/debounce.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "DebouncedFunction",
+			"importedName": "DebouncedFunction",
+			"kind": "type",
+			"source": "./web/packages/utils/debounce",
+			"runtime": "Universal",
+			"reference": "references/utils/debounce.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "DebounceEdge",
+			"importedName": "DebounceEdge",
+			"kind": "type",
+			"source": "./web/packages/utils/debounce",
+			"runtime": "Universal",
+			"reference": "references/utils/debounce.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "DeviceInfo",
+			"importedName": "DeviceInfo",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/getDeviceInfo",
+			"runtime": "Guarded browser fallback",
+			"reference": "references/utils/browser/getDeviceInfo.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "formatLocalDateDisplay",
+			"importedName": "formatLocalDateDisplay",
+			"kind": "value",
+			"source": "./web/packages/utils/calendar",
+			"runtime": "Universal",
+			"reference": "references/utils/calendar.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "formatLocalDateInput",
+			"importedName": "formatLocalDateInput",
+			"kind": "value",
+			"source": "./web/packages/utils/calendar",
+			"runtime": "Universal",
+			"reference": "references/utils/calendar.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "formatLocalDateRangeDisplay",
+			"importedName": "formatLocalDateRangeDisplay",
+			"kind": "value",
+			"source": "./web/packages/utils/calendar",
+			"runtime": "Universal",
+			"reference": "references/utils/calendar.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "formatUtcDateKey",
+			"importedName": "formatUtcDateKey",
+			"kind": "value",
+			"source": "./web/packages/utils/dateInput",
+			"runtime": "Universal",
+			"reference": "references/utils/dateInput.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getCalendarDays",
+			"importedName": "getCalendarDays",
+			"kind": "value",
+			"source": "./web/packages/utils/calendar",
+			"runtime": "Universal",
+			"reference": "references/utils/calendar.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getClientCookie",
+			"importedName": "getClientCookie",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/cookie.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/cookie.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getColorLuminance",
+			"importedName": "getColorLuminance",
+			"kind": "value",
+			"source": "./web/packages/hooks/useLayerLuminance",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useLayerLuminance.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getCookieReadState",
+			"importedName": "getCookieReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/readState.cookie.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/readState.cookie.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getDeviceInfo",
+			"importedName": "getDeviceInfo",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/getDeviceInfo",
+			"runtime": "Guarded browser fallback",
+			"reference": "references/utils/browser/getDeviceInfo.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getLocalStorage",
+			"importedName": "getLocalStorage",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/browserStorage",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/browserStorage.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getSessionStorage",
+			"importedName": "getSessionStorage",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/browserStorage",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/browserStorage.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getStorageReadState",
+			"importedName": "getStorageReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/readState.storage.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/readState.storage.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getUtcWeekdayIndex",
+			"importedName": "getUtcWeekdayIndex",
+			"kind": "value",
+			"source": "./web/packages/utils/dateInput",
+			"runtime": "Universal",
+			"reference": "references/utils/dateInput.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "getViewportPortalRoot",
+			"importedName": "getViewportPortalRoot",
+			"kind": "value",
+			"source": "./web/packages/components/ViewportPortal",
+			"runtime": "Client-only",
+			"reference": "references/components/ViewportPortal.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "hasCookieReadState",
+			"importedName": "hasCookieReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/readState.cookie.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/readState.cookie.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "hasReadState",
+			"importedName": "hasReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/readState",
+			"runtime": "Universal",
+			"reference": "references/utils/readState.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "HasReadStateOptions",
+			"importedName": "HasReadStateOptions",
+			"kind": "type",
+			"source": "./web/packages/utils/readState",
+			"runtime": "Universal",
+			"reference": "references/utils/readState.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "hasStorageReadState",
+			"importedName": "hasStorageReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/readState.storage.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/readState.storage.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "hostMatchesAny",
+			"importedName": "hostMatchesAny",
+			"kind": "value",
+			"source": "./web/packages/utils/url",
+			"runtime": "Universal",
+			"reference": "references/utils/url.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "isBeforeDate",
+			"importedName": "isBeforeDate",
+			"kind": "value",
+			"source": "./web/packages/utils/calendar",
+			"runtime": "Universal",
+			"reference": "references/utils/calendar.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "isDateDisabled",
+			"importedName": "isDateDisabled",
+			"kind": "value",
+			"source": "./web/packages/utils/calendar",
+			"runtime": "Universal",
+			"reference": "references/utils/calendar.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "isEditableKeyboardTarget",
+			"importedName": "isEditableKeyboardTarget",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/isEditableKeyboardTarget",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/isEditableKeyboardTarget.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "isEmailAddress",
+			"importedName": "isEmailAddress",
+			"kind": "value",
+			"source": "./web/packages/utils/url",
+			"runtime": "Universal",
+			"reference": "references/utils/url.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "isEscapeDismissalBlocked",
+			"importedName": "isEscapeDismissalBlocked",
+			"kind": "value",
+			"source": "./web/packages/utils/escapeDismissal",
+			"runtime": "Universal",
+			"reference": "references/utils/escapeDismissal.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "isHttpUrl",
+			"importedName": "isHttpUrl",
+			"kind": "value",
+			"source": "./web/packages/utils/url",
+			"runtime": "Universal",
+			"reference": "references/utils/url.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "isSameCalendarDay",
+			"importedName": "isSameCalendarDay",
+			"kind": "value",
+			"source": "./web/packages/utils/calendar",
+			"runtime": "Universal",
+			"reference": "references/utils/calendar.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "markCookieReadState",
+			"importedName": "markCookieReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/readState.cookie.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/readState.cookie.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "markReadState",
+			"importedName": "markReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/readState",
+			"runtime": "Universal",
+			"reference": "references/utils/readState.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "markStorageReadState",
+			"importedName": "markStorageReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/readState.storage.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/readState.storage.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "MemoryHistory",
+			"importedName": "MemoryHistory",
+			"kind": "type",
+			"source": "./web/packages/utils/memoryHistory",
+			"runtime": "Universal",
+			"reference": "references/utils/memoryHistory.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "MemoryHistoryDirection",
+			"importedName": "MemoryHistoryDirection",
+			"kind": "type",
+			"source": "./web/packages/utils/memoryHistory",
+			"runtime": "Universal",
+			"reference": "references/utils/memoryHistory.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "MemoryHistoryNavigation",
+			"importedName": "MemoryHistoryNavigation",
+			"kind": "type",
+			"source": "./web/packages/utils/memoryHistory",
+			"runtime": "Universal",
+			"reference": "references/utils/memoryHistory.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "mergeRefs",
+			"importedName": "mergeRefs",
+			"kind": "value",
+			"source": "./web/packages/utils/mergeRefs",
+			"runtime": "Universal",
+			"reference": "references/utils/mergeRefs.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "NavigatorClipboard",
+			"importedName": "NavigatorClipboard",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/clipboardShare",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/clipboardShare.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "NavigatorClipboardProps",
+			"importedName": "NavigatorClipboardProps",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/clipboardShare.types",
+			"runtime": "Universal",
+			"reference": "references/utils/browser/clipboardShare.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "NavigatorClipboardResult",
+			"importedName": "NavigatorClipboardResult",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/clipboardShare.types",
+			"runtime": "Universal",
+			"reference": "references/utils/browser/clipboardShare.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "NavigatorShare",
+			"importedName": "NavigatorShare",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/clipboardShare",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/clipboardShare.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "NavigatorShareProps",
+			"importedName": "NavigatorShareProps",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/clipboardShare.types",
+			"runtime": "Universal",
+			"reference": "references/utils/browser/clipboardShare.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "NavigatorShareResult",
+			"importedName": "NavigatorShareResult",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/clipboardShare.types",
+			"runtime": "Universal",
+			"reference": "references/utils/browser/clipboardShare.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "normalizeHostname",
+			"importedName": "normalizeHostname",
+			"kind": "value",
+			"source": "./web/packages/utils/url",
+			"runtime": "Universal",
+			"reference": "references/utils/url.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "parseClientCookieNames",
+			"importedName": "parseClientCookieNames",
+			"kind": "value",
+			"source": "./web/packages/utils/parseCookieNames",
+			"runtime": "Universal",
+			"reference": "references/utils/browser/cookie.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "parseLocalDateInput",
+			"importedName": "parseLocalDateInput",
+			"kind": "value",
+			"source": "./web/packages/utils/calendar",
+			"runtime": "Universal",
+			"reference": "references/utils/calendar.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "parseReadState",
+			"importedName": "parseReadState",
+			"kind": "value",
+			"source": "./web/packages/utils/readState",
+			"runtime": "Universal",
+			"reference": "references/utils/readState.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "parseUtcDateInput",
+			"importedName": "parseUtcDateInput",
+			"kind": "value",
+			"source": "./web/packages/utils/dateInput",
+			"runtime": "Universal",
+			"reference": "references/utils/dateInput.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "ReadStateStorage",
+			"importedName": "ReadStateStorage",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/readState.storage.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/readState.storage.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "removeLocalStorage",
+			"importedName": "removeLocalStorage",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/browserStorage",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/browserStorage.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "removeSessionStorage",
+			"importedName": "removeSessionStorage",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/browserStorage",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/browserStorage.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "resolveLuminanceThreshold",
+			"importedName": "resolveLuminanceThreshold",
+			"kind": "value",
+			"source": "./web/packages/hooks/useLayerLuminance",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useLayerLuminance.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "revokeObjectUrl",
+			"importedName": "revokeObjectUrl",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/objectUrl.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/objectUrl.client.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "ScrollTo",
+			"importedName": "ScrollTo",
+			"kind": "value",
+			"source": "./web/packages/components/ScrollTo",
+			"runtime": "Client-only",
+			"reference": "references/components/ScrollTo.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "setClientCookie",
+			"importedName": "setClientCookie",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/cookie.client",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/cookie.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "SharedBrowserEventListener",
+			"importedName": "SharedBrowserEventListener",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "subscribeKeyboardHeight",
+			"importedName": "subscribeKeyboardHeight",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/subscribeKeyboardHeight",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/subscribeKeyboardHeight.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "subscribeViewportGeometry",
+			"importedName": "subscribeViewportGeometry",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "subscribeViewportResize",
+			"importedName": "subscribeViewportResize",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "subscribeViewportScroll",
+			"importedName": "subscribeViewportScroll",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "subscribeVisualViewportResize",
+			"importedName": "subscribeVisualViewportResize",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "subscribeVisualViewportScroll",
+			"importedName": "subscribeVisualViewportScroll",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "subscribeWindowResize",
+			"importedName": "subscribeWindowResize",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "subscribeWindowScroll",
+			"importedName": "subscribeWindowScroll",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "SwitchCase",
+			"importedName": "SwitchCase",
+			"kind": "value",
+			"source": "./web/packages/components/SwitchCase",
+			"runtime": "Universal",
+			"reference": "references/components/SwitchCase.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "toDate",
+			"importedName": "toDate",
+			"kind": "value",
+			"source": "./web/packages/utils/dateInput",
+			"runtime": "Universal",
+			"reference": "references/utils/dateInput.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "toTrimmedString",
+			"importedName": "toTrimmedString",
+			"kind": "value",
+			"source": "./web/packages/utils/url",
+			"runtime": "Universal",
+			"reference": "references/utils/url.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "toURL",
+			"importedName": "toURL",
+			"kind": "value",
+			"source": "./web/packages/utils/url",
+			"runtime": "Universal",
+			"reference": "references/utils/url.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "toUtcMidnight",
+			"importedName": "toUtcMidnight",
+			"kind": "value",
+			"source": "./web/packages/utils/dateInput",
+			"runtime": "Universal",
+			"reference": "references/utils/dateInput.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "updateLocalStorage",
+			"importedName": "updateLocalStorage",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/browserStorage",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/browserStorage.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "updateSessionStorage",
+			"importedName": "updateSessionStorage",
+			"kind": "value",
+			"source": "./web/packages/utils/browser/browserStorage",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/browserStorage.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useAvoidKeyboard",
+			"importedName": "useAvoidKeyboard",
+			"kind": "value",
+			"source": "./web/packages/hooks/useAvoidKeyboard",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useAvoidKeyboard.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useCheckInvisible",
+			"importedName": "useCheckInvisible",
+			"kind": "value",
+			"source": "./web/packages/hooks/useCheckInvisible",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useCheckInvisible.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useCheckScroll",
+			"importedName": "useCheckScroll",
+			"kind": "value",
+			"source": "./web/packages/hooks/useCheckScroll",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useCheckScroll.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useCollectionSelection",
+			"importedName": "useCollectionSelection",
+			"kind": "value",
+			"source": "./web/packages/hooks/useCollectionSelection",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useCollectionSelection.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useControllableState",
+			"importedName": "useControllableState",
+			"kind": "value",
+			"source": "./web/packages/hooks/useControllableState",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useControllableState.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useDebounce",
+			"importedName": "useDebounce",
+			"kind": "value",
+			"source": "./web/packages/hooks/useDebounce",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useDebounce.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useDebouncedCallback",
+			"importedName": "useDebouncedCallback",
+			"kind": "value",
+			"source": "./web/packages/hooks/useDebouncedCallback",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useDebouncedCallback.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useDoubleClick",
+			"importedName": "useDoubleClick",
+			"kind": "value",
+			"source": "./web/packages/hooks/useDoubleClick",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useDoubleClick.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useGeolocation",
+			"importedName": "useGeolocation",
+			"kind": "value",
+			"source": "./web/packages/hooks/useGeolocation",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useGeolocation.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useHasMounted",
+			"importedName": "useHasMounted",
+			"kind": "value",
+			"source": "./web/packages/hooks/useHasMounted",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useHasMounted.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useIntersectionObserver",
+			"importedName": "useIntersectionObserver",
+			"kind": "value",
+			"source": "./web/packages/hooks/useIntersectionObserver",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useIntersectionObserver.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useInterval",
+			"importedName": "useInterval",
+			"kind": "value",
+			"source": "./web/packages/hooks/useInterval",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useInterval.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useKeyboardHeight",
+			"importedName": "useKeyboardHeight",
+			"kind": "value",
+			"source": "./web/packages/hooks/useKeyboardHeight",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useKeyboardHeight.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useKeyboardListNavigation",
+			"importedName": "useKeyboardListNavigation",
+			"kind": "value",
+			"source": "./web/packages/hooks/useKeyboardListNavigation",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useKeyboardListNavigation.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "UseKeyboardListNavigationOptions",
+			"importedName": "UseKeyboardListNavigationOptions",
+			"kind": "type",
+			"source": "./web/packages/hooks/useKeyboardListNavigation",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useKeyboardListNavigation.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useLayerLuminance",
+			"importedName": "useLayerLuminance",
+			"kind": "value",
+			"source": "./web/packages/hooks/useLayerLuminance",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useLayerLuminance.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useLongPress",
+			"importedName": "useLongPress",
+			"kind": "value",
+			"source": "./web/packages/hooks/useLongPress",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useLongPress.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "usePreservedCallback",
+			"importedName": "usePreservedCallback",
+			"kind": "value",
+			"source": "./web/packages/hooks/usePreservedCallback",
+			"runtime": "Client-only",
+			"reference": "references/hooks/usePreservedCallback.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "usePreservedReference",
+			"importedName": "usePreservedReference",
+			"kind": "value",
+			"source": "./web/packages/hooks/usePreservedReference",
+			"runtime": "Client-only",
+			"reference": "references/hooks/usePreservedReference.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useRefEffect",
+			"importedName": "useRefEffect",
+			"kind": "value",
+			"source": "./web/packages/hooks/useRefEffect",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useRefEffect.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useScrollLock",
+			"importedName": "useScrollLock",
+			"kind": "value",
+			"source": "./web/packages/hooks/useScrollLock",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useScrollLock.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useTimeout",
+			"importedName": "useTimeout",
+			"kind": "value",
+			"source": "./web/packages/hooks/useTimeout",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useTimeout.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useToggleState",
+			"importedName": "useToggleState",
+			"kind": "value",
+			"source": "./web/packages/hooks/useToggleState",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useToggleState.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useViewportHeight",
+			"importedName": "useViewportHeight",
+			"kind": "value",
+			"source": "./web/packages/hooks/useViewportHeight",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useViewportHeight.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "useViewportMatch",
+			"importedName": "useViewportMatch",
+			"kind": "value",
+			"source": "./web/packages/hooks/useViewportMatch",
+			"runtime": "Client-only",
+			"reference": "references/hooks/useViewportMatch.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "ViewportGeometrySubscriptionOptions",
+			"importedName": "ViewportGeometrySubscriptionOptions",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "ViewportPortal",
+			"importedName": "ViewportPortal",
+			"kind": "value",
+			"source": "./web/packages/components/ViewportPortal",
+			"runtime": "Client-only",
+			"reference": "references/components/ViewportPortal.md",
+			"surfaces": ["root", "web"]
+		},
+		{
+			"name": "ViewportScrollSubscriptionOptions",
+			"importedName": "ViewportScrollSubscriptionOptions",
+			"kind": "type",
+			"source": "./web/packages/utils/browser/sharedBrowserEvents",
+			"runtime": "Client-only",
+			"reference": "references/utils/browser/sharedBrowserEvents.md",
+			"surfaces": ["root", "web"]
+		}
+	]
+}
